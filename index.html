@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoescola Pioneira - Sua CNH em Ceilândia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .bg-pioneira-red { background-color: #CC2200; }
+        .text-pioneira-red { color: #CC2200; }
+        .bg-pioneira-dark { background-color: #1A1A1A; }
+        .bg-pioneira-light { background-color: #F9FAFB; }
+        .bg-pioneira-neutral { background-color: #F2F2F2; }
+        
+        .shadow-premium { box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1); }
+        .btn-hover { transition: all 0.3s ease; }
+        .btn-hover:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    </style>
+</head>
+<body class="bg-white text-[#1A1A1A]">
+
+    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-pioneira-red rounded-lg flex items-center justify-center text-white font-black text-xl italic">P</div>
+                <span class="font-extrabold text-xl tracking-tighter uppercase italic">Pioneira</span>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-8 font-semibold text-sm uppercase tracking-wider text-gray-600">
+                <a href="#inicio" class="hover:text-pioneira-red transition">Início</a>
+                <a href="#servicos" class="hover:text-pioneira-red transition">Serviços</a>
+                <a href="#planos" class="hover:text-pioneira-red transition">Planos</a>
+                <a href="#sobre" class="hover:text-pioneira-red transition">Sobre</a>
+                <a href="#contato" class="hover:text-pioneira-red transition">Contato</a>
+            </nav>
+
+            <a href="https://wa.me/5561983516336" class="bg-pioneira-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-tighter btn-hover shadow-lg shadow-red-900/20">
+                Quero minha CNH
+            </a>
+        </div>
+    </header>
+
+    <section id="inicio" class="pt-32 pb-20 bg-pioneira-light">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <span class="inline-block px-4 py-1 bg-red-100 text-pioneira-red rounded-full text-xs font-bold uppercase tracking-widest mb-6">Matrículas Abertas</span>
+                <h1 class="text-5xl md:text-7xl font-black text-pioneira-dark uppercase italic leading-[0.9] tracking-tighter mb-8">
+                    Sua CNH <br> <span class="text-pioneira-red">começa aqui!</span>
+                </h1>
+                <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Aprovando motoristas em Ceilândia há mais de 50 anos com excelência, tecnologia e os melhores instrutores da região.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#planos" class="w-full sm:w-auto bg-pioneira-dark text-white px-10 py-5 rounded-2xl font-black uppercase italic tracking-tighter btn-hover shadow-2xl">
+                        Ver Pacotes e Preços
+                    </a>
+                    <a href="https://wa.me/5561983516336" class="w-full sm:w-auto flex items-center justify-center gap-2 px-10 py-5 font-bold text-pioneira-dark hover:text-pioneira-red transition">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        Falar com Consultor
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-8 rounded-[32px] shadow-premium border border-gray-100 text-center">
+                    <div class="text-4xl font-black text-pioneira-dark mb-1 tracking-tighter italic">+5K</div>
+                    <div class="text-gray-400 text-xs font-bold uppercase tracking-widest">Alunos Formados</div>
+                </div>
+                <div class="bg-white p-8 rounded-[32px] shadow-premium border border-gray-100 text-center">
+                    <div class="text-4xl font-black text-pioneira-red mb-1 tracking-tighter italic">95%</div>
+                    <div class="text-gray-400 text-xs font-bold uppercase tracking-widest">Taxa de Aprovação</div>
+                </div>
+                <div class="bg-white p-8 rounded-[32px] shadow-premium border border-gray-100 text-center">
+                    <div class="text-4xl font-black text-pioneira-dark mb-1 tracking-tighter italic">50+</div>
+                    <div class="text-gray-400 text-xs font-bold uppercase tracking-widest">Anos de História</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
+                <div class="max-w-xl">
+                    <h2 class="text-3xl md:text-5xl font-black text-pioneira-dark uppercase italic tracking-tighter leading-none mb-6">
+                        Por que escolher a Pioneira?
+                    </h2>
+                    <p class="text-gray-500">Oferecemos a melhor estrutura para você conquistar sua liberdade de dirigir.</p>
+                </div>
+                <div class="h-px flex-1 bg-gray-100 hidden md:block ml-10"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card -->
+                <div class="p-8 bg-pioneira-neutral rounded-[32px] group hover:bg-pioneira-dark transition-all duration-500 cursor-default">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition">
+                        <i data-lucide="users" class="w-7 h-7 text-pioneira-red"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3 group-hover:text-white transition">Instrutores Qualificados</h3>
+                    <p class="text-gray-500 group-hover:text-gray-400 transition text-sm leading-relaxed">Profissionais certificados e com vasta experiência no ensino prático.</p>
+                </div>
+                <!-- Card -->
+                <div class="p-8 bg-pioneira-neutral rounded-[32px] group hover:bg-pioneira-dark transition-all duration-500 cursor-default">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition">
+                        <i data-lucide="zap" class="w-7 h-7 text-pioneira-red"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3 group-hover:text-white transition">Alta Taxa de Aprovação</h3>
+                    <p class="text-gray-500 group-hover:text-gray-400 transition text-sm leading-relaxed">Nossa metodologia de ensino garante resultados acima da média do DETRAN.</p>
+                </div>
+                <!-- Card -->
+                <div class="p-8 bg-pioneira-neutral rounded-[32px] group hover:bg-pioneira-dark transition-all duration-500 cursor-default">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition">
+                        <i data-lucide="clock" class="w-7 h-7 text-pioneira-red"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3 group-hover:text-white transition">Atendimento Rápido</h3>
+                    <p class="text-gray-500 group-hover:text-gray-400 transition text-sm leading-relaxed">Processo ágil, da pré-matrícula ao agendamento das aulas práticas.</p>
+                </div>
+                <!-- Card -->
+                <div class="p-8 bg-pioneira-neutral rounded-[32px] group hover:bg-pioneira-dark transition-all duration-500 cursor-default">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition">
+                        <i data-lucide="car" class="w-7 h-7 text-pioneira-red"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3 group-hover:text-white transition">Frota Moderna</h3>
+                    <p class="text-gray-500 group-hover:text-gray-400 transition text-sm leading-relaxed">Carros novos com ar-condicionado e direção para o seu conforto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="py-24 bg-pioneira-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-pioneira-dark uppercase italic italic mb-4 tracking-tighter">Nossos Serviços</h2>
+                <p class="text-gray-500">Tudo o que você precisa para ser um condutor de excelência</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Servico 1 -->
+                <div class="bg-white rounded-[32px] overflow-hidden shadow-premium group">
+                    <div class="h-48 bg-gray-200 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1558981403-c5f91cbba527?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Moto">
+                        <div class="absolute top-4 left-4 bg-pioneira-red text-white text-[10px] font-black uppercase px-3 py-1 rounded-full">Categoria A</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="font-bold text-xl mb-4 italic uppercase">Primeira Habilitação</h4>
+                        <p class="text-gray-500 text-sm mb-6">Inicie sua jornada sobre duas rodas com nossa pista própria e segura.</p>
+                        <a href="#planos" class="inline-flex items-center gap-2 font-bold text-pioneira-red hover:underline">Saber mais e valores <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <!-- Servico 2 -->
+                <div class="bg-white rounded-[32px] overflow-hidden shadow-premium group border-2 border-pioneira-red">
+                    <div class="h-48 bg-gray-200 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Carro">
+                        <div class="absolute top-4 left-4 bg-pioneira-red text-white text-[10px] font-black uppercase px-3 py-1 rounded-full">Categoria B</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="font-bold text-xl mb-4 italic uppercase">Primeira Habilitação</h4>
+                        <p class="text-gray-500 text-sm mb-6">Aprenda a dirigir com veículos modernos e instrutores altamente capacitados.</p>
+                        <a href="#planos" class="inline-flex items-center gap-2 font-bold text-pioneira-red hover:underline">Saber mais e valores <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <!-- Servico 3 -->
+                <div class="bg-white rounded-[32px] overflow-hidden shadow-premium group">
+                    <div class="h-48 bg-gray-200 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Combo">
+                        <div class="absolute top-4 left-4 bg-pioneira-red text-white text-[10px] font-black uppercase px-3 py-1 rounded-full">Destaque</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="font-bold text-xl mb-4 italic uppercase">Habilitação A/B</h4>
+                        <p class="text-gray-500 text-sm mb-6">O melhor custo-benefício para quem deseja total independência no trânsito.</p>
+                        <a href="#planos" class="inline-flex items-center gap-2 font-bold text-pioneira-red hover:underline">Saber mais e valores <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="planos" class="py-24 bg-pioneira-dark text-white overflow-hidden relative">
+        <!-- Background element -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-pioneira-red opacity-5 transform skew-x-12 translate-x-1/2"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-2xl mb-16">
+                <h2 class="text-4xl md:text-5xl font-black italic uppercase tracking-tighter mb-4 leading-none">Nossos Planos e Pacotes</h2>
+                <p class="text-gray-400">Escolha o plano ideal para sua necessidade. Preços transparentes.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Categoria A -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-[40px] hover:bg-white/10 transition">
+                    <h3 class="text-pioneira-red font-black text-2xl uppercase italic mb-8">Categoria A</h3>
+                    <div class="space-y-6 mb-10">
+                        <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                            <span class="font-bold">02 Aulas</span>
+                            <span class="text-xl font-black">R$ 299,00</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                            <span class="font-bold">05 Aulas</span>
+                            <span class="text-xl font-black">R$ 459,00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-pioneira-red">10 Aulas</span>
+                            <span class="text-xl font-black">R$ 699,00</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/5561983516336" class="block w-full bg-white text-pioneira-dark text-center py-4 rounded-2xl font-black uppercase italic tracking-tighter hover:bg-pioneira-red hover:text-white transition">Contratar</a>
+                </div>
+
+                <!-- Categoria B -->
+                <div class="bg-white p-10 rounded-[40px] shadow-2xl shadow-red-900/20 transform lg:scale-105 relative border-4 border-pioneira-red">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-pioneira-red text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">Mais Procurado</div>
+                    <h3 class="text-pioneira-red font-black text-2xl uppercase italic mb-8">Categoria B</h3>
+                    <div class="space-y-6 mb-10 text-pioneira-dark">
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+                            <span class="font-bold">02 Aulas</span>
+                            <span class="text-xl font-black">R$ 399,00</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+                            <span class="font-bold">05 Aulas</span>
+                            <span class="text-xl font-black">R$ 599,00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-pioneira-red">10 Aulas</span>
+                            <span class="text-xl font-black">R$ 899,00</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/5561983516336" class="block w-full bg-pioneira-red text-white text-center py-4 rounded-2xl font-black uppercase italic tracking-tighter hover:bg-pioneira-dark transition">Contratar</a>
+                </div>
+
+                <!-- Categoria AB -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-[40px] hover:bg-white/10 transition text-sm">
+                    <h3 class="text-pioneira-red font-black text-2xl uppercase italic mb-8 leading-tight">Combo A/B</h3>
+                    <div class="space-y-6 mb-10">
+                        <div class="flex justify-between items-start border-b border-white/10 pb-4">
+                            <span class="font-bold leading-tight">02 Carro + <br>02 Moto</span>
+                            <span class="text-xl font-black">R$ 699,00</span>
+                        </div>
+                        <div class="flex justify-between items-start border-b border-white/10 pb-4">
+                            <span class="font-bold leading-tight">05 Carro + <br>02 Moto</span>
+                            <span class="text-xl font-black">R$ 959,00</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold leading-tight">10 Carro + <br>02 Moto</span>
+                            <span class="text-xl font-black">R$ 1.260,00</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/5561983516336" class="block w-full bg-white text-pioneira-dark text-center py-4 rounded-2xl font-black uppercase italic tracking-tighter hover:bg-pioneira-red hover:text-white transition">Contratar</a>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center text-gray-500 text-[10px] font-bold uppercase tracking-[0.2em]">
+                * Valores para pagamento à vista ou PIX. Não inclui taxas do DETRAN e Clínica.
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white overflow-hidden">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-black text-pioneira-dark italic uppercase mb-16 tracking-tighter">O que nossos alunos dizem</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                <!-- Depoimento 1 -->
+                <div class="bg-pioneira-neutral p-8 rounded-[32px] relative">
+                    <div class="text-pioneira-red mb-4"><i data-lucide="quote" class="fill-current"></i></div>
+                    <p class="text-sm text-gray-600 mb-6 leading-relaxed italic">"Aprovado na prova prática! Agradecimento à Pioneira e ao instrutor Leonardo, excelente profissional! Recomendo muito."</p>
+                    <div class="font-black text-xs uppercase tracking-widest">Arthur L.</div>
+                </div>
+                <!-- Depoimento 2 -->
+                <div class="bg-pioneira-neutral p-8 rounded-[32px] relative">
+                    <div class="text-pioneira-red mb-4"><i data-lucide="quote" class="fill-current"></i></div>
+                    <p class="text-sm text-gray-600 mb-6 leading-relaxed italic">"De longe a melhor auto escola de brasilia com atendentes muito atenciosas e instrutores gente boa demais!"</p>
+                    <div class="font-black text-xs uppercase tracking-widest">G. de Moraes</div>
+                </div>
+                <!-- Depoimento 3 -->
+                <div class="bg-pioneira-neutral p-8 rounded-[32px] relative">
+                    <div class="text-pioneira-red mb-4"><i data-lucide="quote" class="fill-current"></i></div>
+                    <p class="text-sm text-gray-600 mb-6 leading-relaxed italic">"Minha experiência foi ótima! O instrutor me ajudou muito, teve paciência e as aulas são super produtivas."</p>
+                    <div class="font-black text-xs uppercase tracking-widest">Hellen Franco</div>
+                </div>
+                <!-- Depoimento 4 -->
+                <div class="bg-pioneira-neutral p-8 rounded-[32px] relative">
+                    <div class="text-pioneira-red mb-4"><i data-lucide="quote" class="fill-current"></i></div>
+                    <p class="text-sm text-gray-600 mb-6 leading-relaxed italic">"Serviço sério e de excelência. Agradeço por todo aprendizado e pelo excelente atendimento de todos."</p>
+                    <div class="font-black text-xs uppercase tracking-widest">Felipe Alves</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-20 bg-pioneira-red text-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-8 leading-none">Formando condutores em Ceilândia <br> com responsabilidade.</h2>
+            <a href="https://wa.me/5561983516336" class="inline-block bg-white text-pioneira-red px-12 py-6 rounded-2xl font-black uppercase italic tracking-tighter text-xl btn-hover shadow-2xl">
+                Fazer pré-matrícula agora!
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-pioneira-dark text-white pt-20 pb-10">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-pioneira-red rounded-lg flex items-center justify-center text-white font-black text-lg italic">P</div>
+                        <span class="font-black text-lg tracking-tighter uppercase italic">Pioneira</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Compromisso com o seu aprendizado e segurança no trânsito. A melhor estrutura de Brasília.
+                    </p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="https://instagram.com/cfcpioneira6" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-pioneira-red transition">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-pioneira-red transition">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-black uppercase italic text-xs tracking-[0.2em] mb-6 text-pioneira-red">Contato</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-gray-600 shrink-0"></i>
+                            (61) 3581-1542
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="message-circle" class="w-5 h-5 text-gray-600 shrink-0"></i>
+                            (61) 98351-6336
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-black uppercase italic text-xs tracking-[0.2em] mb-6 text-pioneira-red">Endereço</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start gap-3 leading-relaxed">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-gray-600 shrink-0"></i>
+                            QNN 02 Conjunto G Lote 03<br>Ceilândia Sul, Brasília - DF
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-black uppercase italic text-xs tracking-[0.2em] mb-6 text-pioneira-red">Horários</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex justify-between border-b border-white/5 pb-2">
+                            <span>Seg a Sex</span>
+                            <span>08h às 18h</span>
+                        </li>
+                        <li class="flex justify-between border-b border-white/5 pb-2">
+                            <span>Sábado</span>
+                            <span>09h às 12h</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] font-bold text-gray-600 uppercase tracking-widest">
+                <div>CNPJ: 18.847.852/0001-84</div>
+                <div>© 2026 Autoescola Pioneira. Todos os direitos reservados.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5561983516336" class="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-2xl btn-hover flex items-center justify-center">
+        <i data-lucide="message-circle" class="w-8 h-8"></i>
+    </a>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
