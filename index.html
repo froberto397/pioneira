@@ -1,390 +1,1727 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autoescola Pioneira - Sua CNH em Ceilândia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .bg-pioneira-red { background-color: #CC2200; }
-        .text-pioneira-red { color: #CC2200; }
-        .bg-pioneira-dark { background-color: #1A1A1A; }
-        .bg-pioneira-light { background-color: #F9FAFB; }
-        .bg-pioneira-neutral { background-color: #F2F2F2; }
-        
-        .shadow-premium { box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1); }
-        .btn-hover { transition: all 0.3s ease; }
-        .btn-hover:hover { transform: translateY(-2px); filter: brightness(1.1); }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Autoescola Pioneira — Ceilândia / DF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Autoescola Pioneira em Ceilândia / Brasília - DF. Primeira habilitação, adição de categoria, renovação de CNH, aulas avulsas de carro e moto." />
+
+  <!-- Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18146580094"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18146580094');
+  </script>
+
+  <style>
+    /* ============================================================
+       RESET & VARIÁVEIS
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary:      #e11b22;
+      --primary-dark: #b31319;
+      --secondary:    #004b8d;
+      --bg-light:     #f5f7fb;
+      --text-main:    #1f2933;
+      --text-muted:   #6b7280;
+      --radius-lg:    14px;
+      --radius-md:    10px;
+      --shadow:       0 18px 45px rgba(15,23,42,.18);
+      --max-w:        1120px;
+      --header-h:     68px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ul  { list-style: none; }
+
+    /* ============================================================
+       UTILITÁRIOS
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section { padding: 4.5rem 0; }
+    @media (min-width: 960px) { section { padding: 5.5rem 0; } }
+
+    /* Scroll margin para compensar header fixo */
+    #inicio,
+    #servicos,
+    #planos,
+    #sobre,
+    #contato {
+      scroll-margin-top: calc(var(--header-h) + 8px);
+    }
+
+    /* Botões */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      padding: .65rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      font-weight: 600;
+      font-size: .9rem;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform .15s, box-shadow .15s;
+      position: relative;
+      z-index: 1;
+      pointer-events: auto;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      min-height: 44px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(225,27,34,.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(225,27,34,.45);
+    }
+    .btn-outline {
+      border: 1.5px solid rgba(148,163,184,.8);
+      background: transparent;
+      color: #e5e7eb;
+    }
+    .btn-outline:hover {
+      border-color: #e5e7eb;
+      background: rgba(255,255,255,.08);
+    }
+    .btn-outline-dark {
+      border: 1.5px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+    }
+    .btn-outline-dark:hover { background: rgba(225,27,34,.06); }
+
+    /* Cabeçalhos de seção */
+    .sec-kicker {
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: .35rem;
+    }
+    .sec-title {
+      font-size: clamp(1.4rem, 2.5vw + .6rem, 1.75rem);
+      margin-bottom: .35rem;
+      color: #020617;
+    }
+    .sec-sub {
+      color: var(--text-muted);
+      font-size: .95rem;
+      max-width: 32rem;
+    }
+    .sec-head { margin-bottom: 2.5rem; }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--header-h);
+      z-index: 100;
+      background: rgba(7,13,23,.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148,163,184,.2);
+    }
+
+    .header-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      pointer-events: auto;
+      z-index: 1;
+    }
+    .brand-logo-wrap {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      padding: 4px; flex-shrink: 0;
+    }
+    .brand-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+    .brand-name {
+      font-weight: 700; font-size: .95rem; color: #f9fafb;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .brand-city { font-size: .75rem; color: #cbd5f5; }
+
+    nav { display: flex; align-items: center; gap: 1rem; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+    .nav-links li a {
+      font-size: .9rem;
+      color: #e5e7eb;
+      cursor: pointer;
+      padding: .25rem 0;
+      position: relative;
+      pointer-events: auto;
+      display: inline-block;
+      background: none;
+      border: none;
+      font-family: inherit;
+      transition: color .15s;
+    }
+    .nav-links li a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: -3px;
+      width: 0; height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--primary), #f97316);
+      transition: width .18s;
+    }
+    .nav-links li a:hover::after { width: 100%; }
+    .nav-links li a:hover { color: #fff; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      width: 26px; height: 20px;
+      justify-content: space-between;
+      cursor: pointer;
+      pointer-events: auto;
+      z-index: 101;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .hamburger span {
+      display: block; height: 2px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      transition: transform .2s, opacity .2s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    @media (max-width: 860px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed;
+        top: var(--header-h);
+        left: 1rem; right: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        background: rgba(7,13,23,.98);
+        border-radius: 16px;
+        padding: 1rem 1.2rem 1.3rem;
+        border: 1px solid rgba(148,163,184,.35);
+        gap: .1rem;
+        opacity: 0;
+        transform: scaleY(.85);
+        transform-origin: top;
+        pointer-events: none;
+        transition: opacity .18s, transform .18s;
+        z-index: 99;
+      }
+      .nav-links.open {
+        opacity: 1;
+        transform: scaleY(1);
+        pointer-events: auto;
+      }
+      .nav-links li a {
+        display: block;
+        padding: .55rem .2rem;
+        font-size: .95rem;
+        border-bottom: 1px solid rgba(148,163,184,.15);
+      }
+      .nav-links li:last-child a { border-bottom: none; }
+      .nav-cta { display: none !important; }
+    }
+    @media (min-width: 861px) {
+      .nav-cta { display: flex !important; }
+    }
+
+    /* ============================================================
+       BANNER
+    ============================================================ */
+    .top-banner {
+      width: 100%;
+      height: 220px;
+      background: #000;
+      overflow: hidden;
+      margin-top: var(--header-h);
+    }
+    .top-banner img { width: 100%; height: 100%; object-fit: cover; }
+    @media (min-width: 1024px) { .top-banner { height: 270px; } }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      background: radial-gradient(circle at top, #0f172a 0%, #020617 60%);
+      color: #f9fafb;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-aside { order: -1; }
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .18rem .75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(148,163,184,.4);
+      font-size: .78rem;
+      color: #cbd5f5;
+      margin-bottom: .9rem;
+    }
+    .hero-title {
+      font-size: clamp(1.9rem, 3vw + 1rem, 2.7rem);
+      line-height: 1.15;
+      margin-bottom: .9rem;
+    }
+    .hero-title span { color: #f97316; }
+    .hero-sub {
+      font-size: .97rem;
+      color: #e5e7eb;
+      max-width: 34rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
+      margin-bottom: 1.8rem;
+    }
+    .badge {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(148,163,184,.45);
+      border-radius: 12px;
+      padding: .55rem .95rem;
+      min-width: 110px;
+    }
+    .badge strong { display: block; font-size: 1.1rem; }
+    .badge span   { font-size: .78rem; color: #cbd5f5; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
+      margin-bottom: 1.1rem;
+    }
+    @media (max-width: 500px) {
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+    }
+    .hero-note { font-size: .78rem; color: #94a3b8; }
+
+    .hero-card {
+      background: radial-gradient(circle at top,
+        rgba(37,99,235,.38) 0%, rgba(7,13,23,.97) 65%);
+      border-radius: 22px;
+      padding: 1.7rem 1.5rem;
+      border: 1px solid rgba(148,163,184,.4);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+      background: radial-gradient(circle at top right,
+        rgba(255,255,255,.1), transparent 55%);
+      pointer-events: none;
+    }
+    .hc-label {
+      font-size: .73rem; text-transform: uppercase;
+      letter-spacing: .1em; color: #cbd5f5; margin-bottom: .25rem;
+    }
+    .hc-title { font-size: 1.1rem; font-weight: 700; margin-bottom: .75rem; }
+    .hc-list  { font-size: .87rem; color: #e5e7eb; margin-bottom: 1.2rem; }
+    .hc-list li { display: flex; gap: .4rem; margin-bottom: .3rem; }
+    .hc-list li::before { content: "✓"; color: #4ade80; flex-shrink: 0; }
+    .hc-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+    .hc-footer-info { font-size: .8rem; color: #cbd5f5; }
+    .hc-footer-info strong { display: block; font-size: .97rem; color: #fefce8; }
+
+    /* ============================================================
+       FEATURES
+    ============================================================ */
+    .features { background: #fff; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid rgba(148,163,184,.35);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem;
+      box-shadow: 0 12px 32px rgba(15,23,42,.06);
+    }
+    .feature-icon {
+      font-size: 1.4rem;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: rgba(225,27,34,.07);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: .7rem;
+    }
+    .feature-card h3 { font-size: 1rem; margin-bottom: .25rem; }
+    .feature-card p  { font-size: .88rem; color: var(--text-muted); }
+
+    /* ============================================================
+       SERVIÇOS
+    ============================================================ */
+    .services { background: var(--bg-light); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+    }
+    .service-card {
+      background: #fff;
+      border: 1px solid rgba(148,163,184,.35);
+      border-radius: var(--radius-md);
+      padding: 1.35rem 1.3rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 28px rgba(15,23,42,.05);
+    }
+    .service-label {
+      font-size: .73rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+    .service-card h3 { font-size: 1rem; margin-bottom: .3rem; }
+    .service-card p  {
+      font-size: .88rem; color: var(--text-muted);
+      margin-bottom: .9rem; flex: 1;
+    }
+    .service-card .btn { align-self: flex-start; font-size: .84rem; }
+
+    /* ============================================================
+       PLANOS
+    ============================================================ */
+    .plans { background: #fff; }
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.8rem;
+    }
+    .plan-card {
+      background: #fff;
+      border: 1px solid rgba(148,163,184,.45);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(15,23,42,.09);
+      display: flex; flex-direction: column;
+    }
+    .plan-img { width: 100%; height: 195px; overflow: hidden; }
+    .plan-img img { width: 100%; height: 100%; object-fit: cover; }
+    .plan-body { padding: 1.3rem; display: flex; flex-direction: column; flex: 1; }
+    .plan-cat {
+      font-size: .73rem; text-transform: uppercase;
+      letter-spacing: .14em; color: var(--primary);
+      font-weight: 700; margin-bottom: .2rem;
+    }
+    .plan-title { font-size: 1.2rem; font-weight: 700; margin-bottom: .2rem; }
+    .plan-sub   { font-size: .88rem; color: var(--text-muted); margin-bottom: .8rem; }
+    .plan-table {
+      width: 100%; border-collapse: collapse;
+      font-size: .88rem; margin-bottom: .7rem;
+    }
+    .plan-table tr { border-bottom: 1px dashed rgba(148,163,184,.5); }
+    .plan-table tr:last-child { border-bottom: none; }
+    .plan-table td { padding: .35rem 0; }
+    .plan-table td:first-child { color: var(--text-muted); }
+    .plan-table td:last-child  { text-align: right; font-weight: 600; }
+    .plan-notes { font-size: .75rem; color: var(--text-muted); margin-bottom: .8rem; }
+    .plan-footer { margin-top: auto; display: flex; justify-content: flex-end; }
+
+    /* ============================================================
+       DEPOIMENTOS
+    ============================================================ */
+    .testimonials {
+      background: #eff6ff;
+      border-top: 1px solid rgba(148,163,184,.35);
+      border-bottom: 1px solid rgba(148,163,184,.35);
+    }
+    .testimonials-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .testimonials-wrap .sec-sub { margin: 0 auto; }
+
+    .slider { position: relative; margin-top: 2rem; }
+    .slide {
+      display: none;
+      background: #fff;
+      border: 1px solid rgba(148,163,184,.4);
+      border-radius: 18px;
+      padding: 1.6rem 1.7rem 1.4rem;
+      box-shadow: 0 16px 40px rgba(15,23,42,.08);
+      text-align: left;
+    }
+    .slide.active { display: block; }
+    .slide-text   { font-size: .95rem; color: #111827; margin-bottom: .9rem; }
+    .slide-author { font-weight: 600; font-size: .9rem; color: var(--secondary); }
+
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.1rem;
+      gap: .7rem;
+    }
+    .slider-arrows { display: flex; gap: .4rem; }
+    .arrow-btn {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(148,163,184,.7);
+      background: #fff;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s, color .15s;
+      pointer-events: auto;
+      z-index: 1; position: relative;
+    }
+    .arrow-btn:hover { background: #0f172a; color: #fff; }
+    .slider-dots { display: flex; gap: .4rem; justify-content: center; flex: 1; }
+    .dot {
+      width: 9px; height: 9px;
+      border-radius: 999px;
+      background: rgba(148,163,184,.6);
+      cursor: pointer; border: none;
+      transition: width .18s, background .18s;
+      pointer-events: auto;
+    }
+    .dot.active {
+      width: 24px;
+      background: linear-gradient(to right, var(--primary), #f97316);
+    }
+
+    /* ============================================================
+       SOBRE
+    ============================================================ */
+    .sobre-section { background: var(--bg-light); }
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .sobre-grid { grid-template-columns: 1fr; } }
+
+    .sobre-text p {
+      font-size: .97rem;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+    }
+    .sobre-list {
+      margin: 1rem 0 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .sobre-list li {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .95rem;
+      color: var(--text-main);
+    }
+    .sobre-list li span.icon {
+      font-size: 1.1rem;
+      width: 30px; text-align: center; flex-shrink: 0;
+    }
+
+    .sobre-card {
+      background: #fff;
+      border: 1px solid rgba(148,163,184,.4);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.4rem;
+      box-shadow: 0 12px 32px rgba(15,23,42,.07);
+    }
+    .sobre-card h3 { font-size: 1.05rem; margin-bottom: .5rem; }
+    .sobre-card p  { font-size: .88rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .sobre-card-actions { display: flex; flex-direction: column; gap: .55rem; }
+    .sobre-card-actions .btn { width: 100%; justify-content: center; }
+
+    /* ============================================================
+       CONTATO
+    ============================================================ */
+    .contato-section { background: #020617; color: #e5e7eb; }
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .contato-grid { grid-template-columns: 1fr; } }
+
+    .contato-section .sec-kicker { color: #f97316; }
+    .contato-section .sec-title  { color: #f9fafb; }
+    .contato-section .sec-sub    { color: #cbd5f5; }
+
+    .contato-info-box {
+      background: rgba(15,23,42,.95);
+      border: 1px solid rgba(148,163,184,.35);
+      border-radius: 18px;
+      padding: 1.6rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .contato-info-box h3 {
+      font-size: 1.05rem; font-weight: 700;
+      margin-bottom: 1rem; color: #f9fafb;
+    }
+    .contato-rows { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1rem; }
+    .contato-row {
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+      font-size: .9rem;
+    }
+    .contato-row-icon {
+      font-size: 1.1rem;
+      margin-top: 1px;
+      flex-shrink: 0;
+      width: 24px; text-align: center;
+    }
+    .contato-row-body { display: flex; flex-direction: column; }
+    .contato-row-label {
+      font-size: .73rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #94a3b8;
+      margin-bottom: .1rem;
+    }
+    .contato-row-val { color: #f1f5f9; font-weight: 500; }
+    .contato-row-val a {
+      color: #f1f5f9;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(255,255,255,.3);
+    }
+
+    .contato-hours {
+      font-size: .82rem;
+      color: #94a3b8;
+      border-top: 1px solid rgba(148,163,184,.2);
+      padding-top: .7rem;
+      margin-bottom: 1.1rem;
+    }
+    .contato-hours strong { color: #cbd5f5; }
+
+    .contato-wa-btn {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+    .contato-wa-btn .btn { width: 100%; }
+
+    .contato-map {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,.35);
+      box-shadow: var(--shadow);
+      height: 100%;
+      min-height: 320px;
+    }
+    .contato-map iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      display: block;
+      border: none;
+    }
+
+    /* ============================================================
+       CTA STRIP
+    ============================================================ */
+    .cta-strip {
+      background: linear-gradient(135deg, #020617 60%, #0f172a 100%);
+      color: #e5e7eb;
+      padding: 3.5rem 0;
+      border-top: 1px solid rgba(148,163,184,.15);
+    }
+    .cta-strip-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .cta-strip-text h2 {
+      font-size: clamp(1.2rem,2.5vw+.5rem,1.6rem);
+      color: #f9fafb;
+      margin-bottom: .3rem;
+    }
+    .cta-strip-text p { font-size: .9rem; color: #cbd5f5; }
+    .cta-strip-actions { display: flex; flex-wrap: wrap; gap: .85rem; }
+    @media (max-width: 600px) {
+      .cta-strip-actions { flex-direction: column; width: 100%; }
+      .cta-strip-actions .btn { width: 100%; justify-content: center; }
+    }
+
+    /* ============================================================
+       RODAPÉ
+    ============================================================ */
+    footer {
+      background: #020617;
+      color: #9ca3af;
+      font-size: .85rem;
+      border-top: 1px solid rgba(148,163,184,.2);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1.5fr;
+      gap: 2rem;
+      padding: 2rem 0 1.5rem;
+    }
+    @media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; } }
+
+    .footer-title { font-weight: 600; color: #e5e7eb; margin-bottom: .5rem; }
+    .footer-nav-list li { margin-bottom: .3rem; }
+    .footer-nav-list li a,
+    .footer-nav-list li span {
+      cursor: pointer; color: #9ca3af;
+      transition: color .15s;
+      pointer-events: auto;
+    }
+    .footer-nav-list li a:hover,
+    .footer-nav-list li span:hover { color: #e5e7eb; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(148,163,184,.15);
+      padding: 1rem 0 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .5rem;
+      font-size: .8rem;
+      color: #6b7280;
+    }
+    .footer-bottom strong { color: #e5e7eb; }
+
+    /* ============================================================
+       POLÍTICA DE PRIVACIDADE (overlay)
+    ============================================================ */
+    #privacy-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: #fff;
+      overflow-y: auto;
+      padding-top: var(--header-h);
+    }
+    #privacy-overlay.open { display: block; }
+
+    .privacy-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--header-h);
+      z-index: 201;
+      background: rgba(7,13,23,.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148,163,184,.2);
+    }
+
+    .privacy-content {
+      max-width: 760px;
+      padding: 3rem 1.5rem 5rem;
+      margin: 0 auto;
+    }
+    .privacy-content .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .85rem;
+      color: var(--secondary);
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      background: none;
+      border: none;
+      padding: 0;
+      pointer-events: auto;
+      font-family: inherit;
+    }
+    .privacy-content .back-btn:hover { text-decoration: underline; }
+
+    .privacy-content h1 { font-size: 1.8rem; margin-bottom: .4rem; color: #020617; }
+    .privacy-content .privacy-sub {
+      font-size: .9rem; color: var(--text-muted); margin-bottom: 2rem;
+    }
+    .privacy-content h2 {
+      font-size: 1.05rem; margin: 1.6rem 0 .4rem; color: #020617;
+    }
+    .privacy-content p {
+      font-size: .93rem; color: var(--text-muted); margin-bottom: .5rem;
+    }
+    .privacy-content ul {
+      padding-left: 1.2rem; list-style: disc;
+      font-size: .93rem; color: var(--text-muted);
+    }
+    .privacy-content ul li { margin-bottom: .3rem; }
+  </style>
 </head>
-<body class="bg-white text-[#1A1A1A]">
+<body>
 
-    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="container mx-auto px-4 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-pioneira-red rounded-lg flex items-center justify-center text-white font-black text-xl italic">P</div>
-                <span class="font-extrabold text-xl tracking-tighter uppercase italic">Pioneira</span>
-            </div>
-            
-            <nav class="hidden md:flex items-center gap-8 font-semibold text-sm uppercase tracking-wider text-gray-600">
-                <a href="#inicio" class="hover:text-pioneira-red transition">Início</a>
-                <a href="#servicos" class="hover:text-pioneira-red transition">Serviços</a>
-                <a href="#planos" class="hover:text-pioneira-red transition">Planos</a>
-                <a href="#sobre" class="hover:text-pioneira-red transition">Sobre</a>
-                <a href="#contato" class="hover:text-pioneira-red transition">Contato</a>
-            </nav>
+<header id="main-header">
+  <div class="header-inner">
 
-            <a href="https://wa.me/5561983516336" class="bg-pioneira-red text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-tighter btn-hover shadow-lg shadow-red-900/20">
-                Quero minha CNH
+    <div class="brand" id="brandLogo">
+      <div class="brand-logo-wrap">
+        <img src="logo.png" alt="Autoescola Pioneira" />
+      </div>
+      <div>
+        <div class="brand-name">Autoescola Pioneira</div>
+        <div class="brand-city">Ceilândia · Brasília — DF</div>
+      </div>
+    </div>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a data-link="inicio">Início</a></li>
+        <li><a data-link="servicos">Nossos Serviços</a></li>
+        <li><a data-link="planos">Planos e Pacotes</a></li>
+        <li><a data-link="sobre">Sobre</a></li>
+        <li><a data-link="contato">Contato</a></li>
+        <li class="nav-cta">
+          <a class="btn btn-primary"
+             href="https://wa.me/5561983516336?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20Autoescola%20Pioneira"
+             target="_blank" rel="noopener noreferrer">
+            Quero minha CNH
+          </a>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger"
+              aria-label="Abrir menu" aria-expanded="false" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- BANNER -->
+  <div class="top-banner" id="inicio">
+    <img src="Banner.png" alt="Autoescola Pioneira — Banner principal" />
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div>
+          <div class="hero-kicker">
+            <span>📍</span> Autoescola em Ceilândia · Brasília / DF
+          </div>
+          <h1 class="hero-title">
+            Matrículas abertas —<br><span>Sua CNH começa aqui!</span>
+          </h1>
+          <p class="hero-sub">
+            A Autoescola Pioneira prepara você para conquistar sua CNH com segurança,
+            tranquilidade e alta taxa de aprovação. Instrutores qualificados, aulas de
+            carro e moto, atendimento próximo em Ceilândia há mais de 50 anos.
+          </p>
+
+          <div class="hero-badges">
+            <div class="badge"><strong>5K+</strong><span>alunos formados</span></div>
+            <div class="badge"><strong>95%</strong><span>taxa de aprovação</span></div>
+            <div class="badge"><strong>50+</strong><span>anos de experiência</span></div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary"
+               href="https://wa.me/5561983516336?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20Autoescola%20Pioneira"
+               target="_blank" rel="noopener noreferrer">
+              Quero minha CNH
             </a>
-        </div>
-    </header>
-
-    <section id="inicio" class="pt-32 pb-20 bg-pioneira-light">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <span class="inline-block px-4 py-1 bg-red-100 text-pioneira-red rounded-full text-xs font-bold uppercase tracking-widest mb-6">Matrículas Abertas</span>
-                <h1 class="text-5xl md:text-7xl font-black text-pioneira-dark uppercase italic leading-[0.9] tracking-tighter mb-8">
-                    Sua CNH <br> <span class="text-pioneira-red">começa aqui!</span>
-                </h1>
-                <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Aprovando motoristas em Ceilândia há mais de 50 anos com excelência, tecnologia e os melhores instrutores da região.
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#planos" class="w-full sm:w-auto bg-pioneira-dark text-white px-10 py-5 rounded-2xl font-black uppercase italic tracking-tighter btn-hover shadow-2xl">
-                        Ver Pacotes e Preços
-                    </a>
-                    <a href="https://wa.me/5561983516336" class="w-full sm:w-auto flex items-center justify-center gap-2 px-10 py-5 font-bold text-pioneira-dark hover:text-pioneira-red transition">
-                        <i data-lucide="message-circle" class="w-5 h-5"></i>
-                        Falar com Consultor
-                    </a>
-                </div>
-            </div>
-
-            <!-- Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white p-8 rounded-[32px] shadow-premium border border-gray-100 text-center">
-                    <div class="text-4xl font-black text-pioneira-dark mb-1 tracking-tighter italic">+5K</div>
-                    <div class="text-gray-400 text-xs font-bold uppercase tracking-widest">Alunos Formados</div>
-                </div>
-                <div class="bg-white p-8 rounded-[32px] shadow-premium border border-gray-100 text-center">
-                    <div class="text-4xl font-black text-pioneira-red mb-1 tracking-tighter italic">95%</div>
-                    <div class="text-gray-400 text-xs font-bold uppercase tracking-widest">Taxa de Aprovação</div>
-                </div>
-                <div class="bg-white p-8 rounded-[32px] shadow-premium border border-gray-100 text-center">
-                    <div class="text-4xl font-black text-pioneira-dark mb-1 tracking-tighter italic">50+</div>
-                    <div class="text-gray-400 text-xs font-bold uppercase tracking-widest">Anos de História</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
-                <div class="max-w-xl">
-                    <h2 class="text-3xl md:text-5xl font-black text-pioneira-dark uppercase italic tracking-tighter leading-none mb-6">
-                        Por que escolher a Pioneira?
-                    </h2>
-                    <p class="text-gray-500">Oferecemos a melhor estrutura para você conquistar sua liberdade de dirigir.</p>
-                </div>
-                <div class="h-px flex-1 bg-gray-100 hidden md:block ml-10"></div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Card -->
-                <div class="p-8 bg-pioneira-neutral rounded-[32px] group hover:bg-pioneira-dark transition-all duration-500 cursor-default">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition">
-                        <i data-lucide="users" class="w-7 h-7 text-pioneira-red"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 group-hover:text-white transition">Instrutores Qualificados</h3>
-                    <p class="text-gray-500 group-hover:text-gray-400 transition text-sm leading-relaxed">Profissionais certificados e com vasta experiência no ensino prático.</p>
-                </div>
-                <!-- Card -->
-                <div class="p-8 bg-pioneira-neutral rounded-[32px] group hover:bg-pioneira-dark transition-all duration-500 cursor-default">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition">
-                        <i data-lucide="zap" class="w-7 h-7 text-pioneira-red"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 group-hover:text-white transition">Alta Taxa de Aprovação</h3>
-                    <p class="text-gray-500 group-hover:text-gray-400 transition text-sm leading-relaxed">Nossa metodologia de ensino garante resultados acima da média do DETRAN.</p>
-                </div>
-                <!-- Card -->
-                <div class="p-8 bg-pioneira-neutral rounded-[32px] group hover:bg-pioneira-dark transition-all duration-500 cursor-default">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition">
-                        <i data-lucide="clock" class="w-7 h-7 text-pioneira-red"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 group-hover:text-white transition">Atendimento Rápido</h3>
-                    <p class="text-gray-500 group-hover:text-gray-400 transition text-sm leading-relaxed">Processo ágil, da pré-matrícula ao agendamento das aulas práticas.</p>
-                </div>
-                <!-- Card -->
-                <div class="p-8 bg-pioneira-neutral rounded-[32px] group hover:bg-pioneira-dark transition-all duration-500 cursor-default">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition">
-                        <i data-lucide="car" class="w-7 h-7 text-pioneira-red"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3 group-hover:text-white transition">Frota Moderna</h3>
-                    <p class="text-gray-500 group-hover:text-gray-400 transition text-sm leading-relaxed">Carros novos com ar-condicionado e direção para o seu conforto.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="servicos" class="py-24 bg-pioneira-light">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-black text-pioneira-dark uppercase italic italic mb-4 tracking-tighter">Nossos Serviços</h2>
-                <p class="text-gray-500">Tudo o que você precisa para ser um condutor de excelência</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Servico 1 -->
-                <div class="bg-white rounded-[32px] overflow-hidden shadow-premium group">
-                    <div class="h-48 bg-gray-200 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1558981403-c5f91cbba527?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Moto">
-                        <div class="absolute top-4 left-4 bg-pioneira-red text-white text-[10px] font-black uppercase px-3 py-1 rounded-full">Categoria A</div>
-                    </div>
-                    <div class="p-8">
-                        <h4 class="font-bold text-xl mb-4 italic uppercase">Primeira Habilitação</h4>
-                        <p class="text-gray-500 text-sm mb-6">Inicie sua jornada sobre duas rodas com nossa pista própria e segura.</p>
-                        <a href="#planos" class="inline-flex items-center gap-2 font-bold text-pioneira-red hover:underline">Saber mais e valores <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                    </div>
-                </div>
-                <!-- Servico 2 -->
-                <div class="bg-white rounded-[32px] overflow-hidden shadow-premium group border-2 border-pioneira-red">
-                    <div class="h-48 bg-gray-200 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Carro">
-                        <div class="absolute top-4 left-4 bg-pioneira-red text-white text-[10px] font-black uppercase px-3 py-1 rounded-full">Categoria B</div>
-                    </div>
-                    <div class="p-8">
-                        <h4 class="font-bold text-xl mb-4 italic uppercase">Primeira Habilitação</h4>
-                        <p class="text-gray-500 text-sm mb-6">Aprenda a dirigir com veículos modernos e instrutores altamente capacitados.</p>
-                        <a href="#planos" class="inline-flex items-center gap-2 font-bold text-pioneira-red hover:underline">Saber mais e valores <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                    </div>
-                </div>
-                <!-- Servico 3 -->
-                <div class="bg-white rounded-[32px] overflow-hidden shadow-premium group">
-                    <div class="h-48 bg-gray-200 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Combo">
-                        <div class="absolute top-4 left-4 bg-pioneira-red text-white text-[10px] font-black uppercase px-3 py-1 rounded-full">Destaque</div>
-                    </div>
-                    <div class="p-8">
-                        <h4 class="font-bold text-xl mb-4 italic uppercase">Habilitação A/B</h4>
-                        <p class="text-gray-500 text-sm mb-6">O melhor custo-benefício para quem deseja total independência no trânsito.</p>
-                        <a href="#planos" class="inline-flex items-center gap-2 font-bold text-pioneira-red hover:underline">Saber mais e valores <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="planos" class="py-24 bg-pioneira-dark text-white overflow-hidden relative">
-        <!-- Background element -->
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-pioneira-red opacity-5 transform skew-x-12 translate-x-1/2"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-2xl mb-16">
-                <h2 class="text-4xl md:text-5xl font-black italic uppercase tracking-tighter mb-4 leading-none">Nossos Planos e Pacotes</h2>
-                <p class="text-gray-400">Escolha o plano ideal para sua necessidade. Preços transparentes.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Categoria A -->
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-[40px] hover:bg-white/10 transition">
-                    <h3 class="text-pioneira-red font-black text-2xl uppercase italic mb-8">Categoria A</h3>
-                    <div class="space-y-6 mb-10">
-                        <div class="flex justify-between items-center border-b border-white/10 pb-4">
-                            <span class="font-bold">02 Aulas</span>
-                            <span class="text-xl font-black">R$ 299,00</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-white/10 pb-4">
-                            <span class="font-bold">05 Aulas</span>
-                            <span class="text-xl font-black">R$ 459,00</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-pioneira-red">10 Aulas</span>
-                            <span class="text-xl font-black">R$ 699,00</span>
-                        </div>
-                    </div>
-                    <a href="https://wa.me/5561983516336" class="block w-full bg-white text-pioneira-dark text-center py-4 rounded-2xl font-black uppercase italic tracking-tighter hover:bg-pioneira-red hover:text-white transition">Contratar</a>
-                </div>
-
-                <!-- Categoria B -->
-                <div class="bg-white p-10 rounded-[40px] shadow-2xl shadow-red-900/20 transform lg:scale-105 relative border-4 border-pioneira-red">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-pioneira-red text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">Mais Procurado</div>
-                    <h3 class="text-pioneira-red font-black text-2xl uppercase italic mb-8">Categoria B</h3>
-                    <div class="space-y-6 mb-10 text-pioneira-dark">
-                        <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-                            <span class="font-bold">02 Aulas</span>
-                            <span class="text-xl font-black">R$ 399,00</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-                            <span class="font-bold">05 Aulas</span>
-                            <span class="text-xl font-black">R$ 599,00</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-pioneira-red">10 Aulas</span>
-                            <span class="text-xl font-black">R$ 899,00</span>
-                        </div>
-                    </div>
-                    <a href="https://wa.me/5561983516336" class="block w-full bg-pioneira-red text-white text-center py-4 rounded-2xl font-black uppercase italic tracking-tighter hover:bg-pioneira-dark transition">Contratar</a>
-                </div>
-
-                <!-- Categoria AB -->
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-[40px] hover:bg-white/10 transition text-sm">
-                    <h3 class="text-pioneira-red font-black text-2xl uppercase italic mb-8 leading-tight">Combo A/B</h3>
-                    <div class="space-y-6 mb-10">
-                        <div class="flex justify-between items-start border-b border-white/10 pb-4">
-                            <span class="font-bold leading-tight">02 Carro + <br>02 Moto</span>
-                            <span class="text-xl font-black">R$ 699,00</span>
-                        </div>
-                        <div class="flex justify-between items-start border-b border-white/10 pb-4">
-                            <span class="font-bold leading-tight">05 Carro + <br>02 Moto</span>
-                            <span class="text-xl font-black">R$ 959,00</span>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <span class="font-bold leading-tight">10 Carro + <br>02 Moto</span>
-                            <span class="text-xl font-black">R$ 1.260,00</span>
-                        </div>
-                    </div>
-                    <a href="https://wa.me/5561983516336" class="block w-full bg-white text-pioneira-dark text-center py-4 rounded-2xl font-black uppercase italic tracking-tighter hover:bg-pioneira-red hover:text-white transition">Contratar</a>
-                </div>
-            </div>
-
-            <div class="mt-16 text-center text-gray-500 text-[10px] font-bold uppercase tracking-[0.2em]">
-                * Valores para pagamento à vista ou PIX. Não inclui taxas do DETRAN e Clínica.
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-white overflow-hidden">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-black text-pioneira-dark italic uppercase mb-16 tracking-tighter">O que nossos alunos dizem</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-                <!-- Depoimento 1 -->
-                <div class="bg-pioneira-neutral p-8 rounded-[32px] relative">
-                    <div class="text-pioneira-red mb-4"><i data-lucide="quote" class="fill-current"></i></div>
-                    <p class="text-sm text-gray-600 mb-6 leading-relaxed italic">"Aprovado na prova prática! Agradecimento à Pioneira e ao instrutor Leonardo, excelente profissional! Recomendo muito."</p>
-                    <div class="font-black text-xs uppercase tracking-widest">Arthur L.</div>
-                </div>
-                <!-- Depoimento 2 -->
-                <div class="bg-pioneira-neutral p-8 rounded-[32px] relative">
-                    <div class="text-pioneira-red mb-4"><i data-lucide="quote" class="fill-current"></i></div>
-                    <p class="text-sm text-gray-600 mb-6 leading-relaxed italic">"De longe a melhor auto escola de brasilia com atendentes muito atenciosas e instrutores gente boa demais!"</p>
-                    <div class="font-black text-xs uppercase tracking-widest">G. de Moraes</div>
-                </div>
-                <!-- Depoimento 3 -->
-                <div class="bg-pioneira-neutral p-8 rounded-[32px] relative">
-                    <div class="text-pioneira-red mb-4"><i data-lucide="quote" class="fill-current"></i></div>
-                    <p class="text-sm text-gray-600 mb-6 leading-relaxed italic">"Minha experiência foi ótima! O instrutor me ajudou muito, teve paciência e as aulas são super produtivas."</p>
-                    <div class="font-black text-xs uppercase tracking-widest">Hellen Franco</div>
-                </div>
-                <!-- Depoimento 4 -->
-                <div class="bg-pioneira-neutral p-8 rounded-[32px] relative">
-                    <div class="text-pioneira-red mb-4"><i data-lucide="quote" class="fill-current"></i></div>
-                    <p class="text-sm text-gray-600 mb-6 leading-relaxed italic">"Serviço sério e de excelência. Agradeço por todo aprendizado e pelo excelente atendimento de todos."</p>
-                    <div class="font-black text-xs uppercase tracking-widest">Felipe Alves</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contato" class="py-20 bg-pioneira-red text-white text-center">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-8 leading-none">Formando condutores em Ceilândia <br> com responsabilidade.</h2>
-            <a href="https://wa.me/5561983516336" class="inline-block bg-white text-pioneira-red px-12 py-6 rounded-2xl font-black uppercase italic tracking-tighter text-xl btn-hover shadow-2xl">
-                Fazer pré-matrícula agora!
+            <a class="btn btn-outline"
+               href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+               target="_blank" rel="noopener noreferrer">
+              Fazer Pré-matrícula agora!
             </a>
+          </div>
+
+          <p class="hero-note">
+            Atendimento rápido · Processo sem burocracia · Acompanhamento até o DETRAN
+          </p>
         </div>
-    </section>
 
-    <footer class="bg-pioneira-dark text-white pt-20 pb-10">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                <div>
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="w-8 h-8 bg-pioneira-red rounded-lg flex items-center justify-center text-white font-black text-lg italic">P</div>
-                        <span class="font-black text-lg tracking-tighter uppercase italic">Pioneira</span>
-                    </div>
-                    <p class="text-gray-500 text-sm leading-relaxed">
-                        Compromisso com o seu aprendizado e segurança no trânsito. A melhor estrutura de Brasília.
-                    </p>
-                    <div class="flex gap-4 mt-6">
-                        <a href="https://instagram.com/cfcpioneira6" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-pioneira-red transition">
-                            <i data-lucide="instagram" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-pioneira-red transition">
-                            <i data-lucide="facebook" class="w-5 h-5"></i>
-                        </a>
-                    </div>
-                </div>
+        <aside class="hero-aside">
+          <div class="hero-card">
+            <p class="hc-label">Pronto para começar?</p>
+            <h2 class="hc-title">Escolha seu caminho para a CNH</h2>
+            <ul class="hc-list">
+              <li>Primeira habilitação A, B ou AB</li>
+              <li>Adição de categoria e renovação de CNH</li>
+              <li>Aulas avulsas de carro e moto</li>
+              <li>Instrutores pacientes e experientes</li>
+            </ul>
+            <div class="hc-footer">
+              <div class="hc-footer-info">
+                <span>Fale com um consultor</span>
+                <strong>(61) 98351-6336</strong>
+              </div>
+              <a class="btn btn-primary"
+                 style="font-size:.82rem; padding-inline:.95rem;"
+                 href="https://wa.me/5561983516336?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20Autoescola%20Pioneira"
+                 target="_blank" rel="noopener noreferrer">
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </aside>
 
-                <div>
-                    <h4 class="font-black uppercase italic text-xs tracking-[0.2em] mb-6 text-pioneira-red">Contato</h4>
-                    <ul class="space-y-4 text-sm text-gray-400">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="phone" class="w-5 h-5 text-gray-600 shrink-0"></i>
-                            (61) 3581-1542
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="message-circle" class="w-5 h-5 text-gray-600 shrink-0"></i>
-                            (61) 98351-6336
-                        </li>
-                    </ul>
-                </div>
+      </div>
+    </div>
+  </section>
 
-                <div>
-                    <h4 class="font-black uppercase italic text-xs tracking-[0.2em] mb-6 text-pioneira-red">Endereço</h4>
-                    <ul class="space-y-4 text-sm text-gray-400">
-                        <li class="flex items-start gap-3 leading-relaxed">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-gray-600 shrink-0"></i>
-                            QNN 02 Conjunto G Lote 03<br>Ceilândia Sul, Brasília - DF
-                        </li>
-                    </ul>
-                </div>
+  <!-- POR QUE ESCOLHER -->
+  <section class="features">
+    <div class="container">
+      <div class="sec-head">
+        <p class="sec-kicker">Por que escolher a Pioneira?</p>
+        <h2 class="sec-title">Tradição, resultado e atendimento próximo</h2>
+        <p class="sec-sub">
+          Somos referência em formação de condutores em Ceilândia, unindo tradição,
+          excelência no atendimento e resultados comprovados.
+        </p>
+      </div>
+      <div class="features-grid">
+        <article class="feature-card">
+          <div class="feature-icon">🎓</div>
+          <h3>Instrutores Qualificados</h3>
+          <p>Profissionais certificados e experientes, preparados para ensinar com paciência e foco na sua aprovação.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Alta Taxa de Aprovação</h3>
+          <p>Mais de 95% dos nossos alunos aprovados no DETRAN, graças a um método estruturado e eficiente.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Atendimento Rápido</h3>
+          <p>Processo ágil da matrícula às aulas, com suporte próximo em cada etapa até a aprovação.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">🛵</div>
+          <h3>Aulas de Carro e Moto</h3>
+          <p>Veículos modernos e bem conservados para você praticar tanto em automóveis quanto em motocicletas.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-                <div>
-                    <h4 class="font-black uppercase italic text-xs tracking-[0.2em] mb-6 text-pioneira-red">Horários</h4>
-                    <ul class="space-y-4 text-sm text-gray-400">
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span>Seg a Sex</span>
-                            <span>08h às 18h</span>
-                        </li>
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span>Sábado</span>
-                            <span>09h às 12h</span>
-                        </li>
-                    </ul>
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="services">
+    <div class="container">
+      <div class="sec-head">
+        <p class="sec-kicker">Nossos Serviços</p>
+        <h2 class="sec-title">Tudo o que você precisa para conquistar sua CNH</h2>
+        <p class="sec-sub">
+          Oferecemos todas as modalidades de habilitação, adição de categoria, renovação de CNH
+          e aulas avulsas para você praticar no seu ritmo.
+        </p>
+      </div>
+      <div class="services-grid">
+
+        <article class="service-card">
+          <span class="service-label">Categoria A</span>
+          <h3>Primeira Habilitação A</h3>
+          <p>Curso completo para quem quer conquistar a CNH categoria A e conduzir motocicletas com segurança.</p>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
+        </article>
+
+        <article class="service-card">
+          <span class="service-label">Categoria B</span>
+          <h3>Primeira Habilitação B</h3>
+          <p>Formação completa para quem deseja dirigir automóveis, com teoria, simulador e aulas práticas.</p>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
+        </article>
+
+        <article class="service-card">
+          <span class="service-label">Categoria AB</span>
+          <h3>Primeira Habilitação AB</h3>
+          <p>Para quem quer dirigir carro e moto — plano integrado que otimiza seu tempo e investimento.</p>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
+        </article>
+
+        <article class="service-card">
+          <span class="service-label">Adição</span>
+          <h3>Adição de Categoria A</h3>
+          <p>Já tem CNH e quer incluir motocicleta? Faça a adição com nossa equipe especializada.</p>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
+        </article>
+
+        <article class="service-card">
+          <span class="service-label">Adição</span>
+          <h3>Adição de Categoria B</h3>
+          <p>Amplie suas possibilidades de direção adicionando a categoria B com acompanhamento completo.</p>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
+        </article>
+
+        <article class="service-card">
+          <span class="service-label">Renovação</span>
+          <h3>Renovação de CNH</h3>
+          <p>Suporte completo no processo de renovação, com orientação sobre exames, prazos e documentação.</p>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
+        </article>
+
+        <article class="service-card">
+          <span class="service-label">Treinamento</span>
+          <h3>Aulas Avulsas (Carro e Moto)</h3>
+          <p>Reforce manobras, estacionamento, baliza e condução em vias movimentadas no seu ritmo.</p>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
+        </article>
+
+        <article class="service-card">
+          <span class="service-label">Ver mais</span>
+          <h3>Quer conhecer todos os planos?</h3>
+          <p>Fale com nossa equipe e descubra qual opção é ideal para você com condições especiais.</p>
+          <a class="btn btn-outline-dark"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Ver todos os serviços</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section id="planos" class="plans">
+    <div class="container">
+      <div class="sec-head">
+        <p class="sec-kicker">Planos e Pacotes</p>
+        <h2 class="sec-title">Escolha o pacote ideal e dê o próximo passo rumo à sua CNH</h2>
+      </div>
+      <div class="plans-grid">
+
+        <article class="plan-card">
+          <div class="plan-img">
+            <img src="imagem_1.png" alt="Plano Categoria A - Moto" />
+          </div>
+          <div class="plan-body">
+            <p class="plan-cat">Categoria A</p>
+            <h3 class="plan-title">Moto</h3>
+            <p class="plan-sub">Aulas práticas de pilotagem para ganhar confiança e dominar as manobras mais cobradas.</p>
+            <table class="plan-table">
+              <tr><td>2 aulas</td><td>R$ 299,00</td></tr>
+              <tr><td>5 aulas</td><td>R$ 459,00</td></tr>
+              <tr><td>10 aulas</td><td>R$ 699,00</td></tr>
+            </table>
+            <p class="plan-notes">* Valores à vista ou PIX. Não inclui taxas do DETRAN e clínica.</p>
+            <div class="plan-footer">
+              <a class="btn btn-primary"
+                 href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+                 target="_blank" rel="noopener noreferrer">Contratar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="plan-card">
+          <div class="plan-img">
+            <img src="imagem_2.png" alt="Plano Categoria B - Carro" />
+          </div>
+          <div class="plan-body">
+            <p class="plan-cat">Categoria B</p>
+            <h3 class="plan-title">Carro</h3>
+            <p class="plan-sub">Pacotes ideais para treinar baliza, estacionamento e trânsito real com acompanhamento próximo.</p>
+            <table class="plan-table">
+              <tr><td>2 aulas</td><td>R$ 399,00</td></tr>
+              <tr><td>5 aulas</td><td>R$ 599,00</td></tr>
+              <tr><td>10 aulas</td><td>R$ 899,00</td></tr>
+            </table>
+            <p class="plan-notes">* Valores à vista ou PIX. Não inclui taxas do DETRAN e clínica.</p>
+            <div class="plan-footer">
+              <a class="btn btn-primary"
+                 href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+                 target="_blank" rel="noopener noreferrer">Contratar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="plan-card">
+          <div class="plan-img">
+            <img src="imagem_3.png" alt="Plano Categoria A/B - Carro e Moto" />
+          </div>
+          <div class="plan-body">
+            <p class="plan-cat">Categoria A/B</p>
+            <h3 class="plan-title">Carro + Moto</h3>
+            <p class="plan-sub">Combine carro e moto para versatilidade e o melhor custo-benefício.</p>
+            <table class="plan-table">
+              <tr><td>2 carro + 2 moto</td><td>R$ 699,00</td></tr>
+              <tr><td>5 carro + 2 moto</td><td>R$ 959,00</td></tr>
+              <tr><td>10 carro + 2 moto</td><td>R$ 1.260,00</td></tr>
+            </table>
+            <p class="plan-notes">* Valores à vista ou PIX. Não inclui taxas do DETRAN e clínica.</p>
+            <div class="plan-footer">
+              <a class="btn btn-primary"
+                 href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+                 target="_blank" rel="noopener noreferrer">Contratar</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="testimonials-wrap">
+        <div class="sec-head">
+          <p class="sec-kicker">Depoimentos</p>
+          <h2 class="sec-title">O que nossos alunos dizem</h2>
+          <p class="sec-sub">
+            A melhor prova da nossa qualidade está em quem já passou por aqui e conquistou a CNH com a Pioneira.
+          </p>
+        </div>
+
+        <div class="slider" id="slider">
+          <article class="slide active">
+            <p class="slide-text">
+              "Fui aprovado na prova prática e deixo aqui meu agradecimento à Auto Escola
+              Pioneira, principalmente ao instrutor Leonardo, que foi essencial nessa conquista.
+              Sempre muito atento, paciente e claro nas correções, passou dicas que fizeram
+              total diferença na hora da prova. Excelente profissional! Recomendo muito."
+            </p>
+            <p class="slide-author">— Arthur L.</p>
+          </article>
+
+          <article class="slide">
+            <p class="slide-text">
+              "De longe a melhor autoescola de Brasília com atendentes muito atenciosas
+              e instrutores gente boa demais!"
+            </p>
+            <p class="slide-author">— G. de Moraes</p>
+          </article>
+
+          <article class="slide">
+            <p class="slide-text">
+              "Minha experiência foi muito boa! Meu instrutor foi essencial nessa caminhada,
+              me ajudou, teve paciência, as aulas são superprodutivas, me deixou mais
+              confiante, consegui fazer a prova e alcancei minha aprovação por conta dele
+              e da Autoescola Pioneira!"
+            </p>
+            <p class="slide-author">— Hellen Franco</p>
+          </article>
+
+          <article class="slide">
+            <p class="slide-text">
+              "Quero deixar aqui meu agradecimento a esta autoescola que presta um serviço
+              sério e de excelência. Agradeço por todo aprendizado que tive e pelo excelente
+              atendimento."
+            </p>
+            <p class="slide-author">— Felipe Alves</p>
+          </article>
+
+          <div class="slider-controls">
+            <div class="slider-arrows">
+              <button type="button" class="arrow-btn" id="sliderPrev" aria-label="Anterior">&#8249;</button>
+              <button type="button" class="arrow-btn" id="sliderNext" aria-label="Próximo">&#8250;</button>
+            </div>
+            <div class="slider-dots" id="sliderDots"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="sobre-section">
+    <div class="container">
+      <div class="sec-head">
+        <p class="sec-kicker">Sobre nós</p>
+        <h2 class="sec-title">Sobre a Autoescola Pioneira</h2>
+        <p class="sec-sub">Mais de 50 anos formando condutores seguros e confiantes em Ceilândia.</p>
+      </div>
+
+      <div class="sobre-grid">
+
+        <div class="sobre-text">
+          <p>
+            Há mais de 50 anos formando condutores em Ceilândia, a Autoescola Pioneira é
+            referência em qualidade, tradição e compromisso com a aprovação dos alunos.
+            Nossa história começou com a missão de oferecer um ensino de trânsito acessível,
+            humano e eficiente — e essa essência permanece até hoje.
+          </p>
+          <p>
+            Ao longo de décadas, ajudamos mais de 5 mil alunos a conquistarem sua CNH com
+            segurança e confiança. Nosso método de ensino combina instrutores experientes,
+            atendimento próximo e uma frota moderna de veículos, garantindo que cada aluno
+            aprenda no seu ritmo e com total tranquilidade.
+          </p>
+          <p>
+            Acreditamos que dirigir é mais do que cumprir etapas: é adquirir autonomia,
+            responsabilidade e preparo para o trânsito. Por isso, acompanhamos você desde
+            a matrícula até a aprovação no DETRAN, sempre com transparência, agilidade e
+            suporte completo.
+          </p>
+
+          <p><strong>Na Pioneira, você encontra:</strong></p>
+          <ul class="sobre-list">
+            <li><span class="icon">🎓</span> Instrutores certificados e pacientes</li>
+            <li><span class="icon">🚗</span> Aulas práticas de carro e moto</li>
+            <li><span class="icon">⚡</span> Processo rápido e sem burocracia</li>
+            <li><span class="icon">🏆</span> Alta taxa de aprovação</li>
+            <li><span class="icon">🤝</span> Atendimento humanizado e dedicado</li>
+          </ul>
+
+          <p>
+            Somos parte da história de Ceilândia e temos orgulho de contribuir para um
+            trânsito mais seguro, formando motoristas conscientes e preparados. Sua CNH
+            começa aqui — e começa com confiança.
+          </p>
+        </div>
+
+        <aside>
+          <div class="sobre-card">
+            <h3>Pronto para dar o próximo passo?</h3>
+            <p>
+              Fale com nossa equipe agora mesmo e descubra o melhor plano para você.
+              Matrículas abertas!
+            </p>
+            <div class="sobre-card-actions">
+              <a class="btn btn-primary"
+                 href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+                 target="_blank" rel="noopener noreferrer">
+                Fazer Pré-matrícula
+              </a>
+              <a class="btn btn-outline-dark"
+                 href="https://wa.me/5561983516336?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20Autoescola%20Pioneira"
+                 target="_blank" rel="noopener noreferrer">
+                Falar pelo WhatsApp
+              </a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato" class="contato-section">
+    <div class="container">
+      <div class="contato-grid">
+
+        <div>
+          <div class="sec-head">
+            <p class="sec-kicker">Contato</p>
+            <h2 class="sec-title">Fale com um consultor</h2>
+            <p class="sec-sub">
+              Tire suas dúvidas, consulte condições especiais e descubra qual o melhor plano para você.
+            </p>
+          </div>
+
+          <div class="contato-info-box">
+            <h3>Entre em contato</h3>
+
+            <div class="contato-rows">
+              <div class="contato-row">
+                <div class="contato-row-icon">💬</div>
+                <div class="contato-row-body">
+                  <span class="contato-row-label">WhatsApp</span>
+                  <span class="contato-row-val">
+                    <a href="https://wa.me/5561983516336?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20Autoescola%20Pioneira"
+                       target="_blank" rel="noopener noreferrer">
+                      (61) 98351-6336
+                    </a>
+                  </span>
                 </div>
+              </div>
+
+              <div class="contato-row">
+                <div class="contato-row-icon">☎️</div>
+                <div class="contato-row-body">
+                  <span class="contato-row-label">Telefone</span>
+                  <span class="contato-row-val">(61) 3581-1542</span>
+                </div>
+              </div>
+
+              <div class="contato-row">
+                <div class="contato-row-icon">📍</div>
+                <div class="contato-row-body">
+                  <span class="contato-row-label">Endereço</span>
+                  <span class="contato-row-val">
+                    QNN 02 Conjunto G Lote 03 — Ceilândia Sul, Brasília, DF
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] font-bold text-gray-600 uppercase tracking-widest">
-                <div>CNPJ: 18.847.852/0001-84</div>
-                <div>© 2026 Autoescola Pioneira. Todos os direitos reservados.</div>
+            <p class="contato-hours">
+              <strong>Horários:</strong> Seg a Sex: 8h às 18h &nbsp;|&nbsp; Sáb: 9h às 12h
+            </p>
+
+            <div class="contato-wa-btn">
+              <a class="btn btn-primary"
+                 href="https://wa.me/5561983516336?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20Autoescola%20Pioneira"
+                 target="_blank" rel="noopener noreferrer">
+                Falar com um consultor
+              </a>
             </div>
+          </div>
         </div>
-    </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/5561983516336" class="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-2xl btn-hover flex items-center justify-center">
-        <i data-lucide="message-circle" class="w-8 h-8"></i>
-    </a>
+        <div class="contato-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15518.891646886516!2d-48.111078976185176!3d-15.819926464785354!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a2fd4f2d9cce7%3A0x0000000000000000!2sAutoescola%20Pioneira!5e0!3m2!1spt-BR!2sbr!4v1715798400000"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização da Autoescola Pioneira em Ceilândia, Brasília - DF">
+          </iframe>
+        </div>
 
-    <script>
-        // Initialize Icons
-        lucide.createIcons();
+      </div>
+    </div>
+  </section>
 
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+  <!-- CTA STRIP -->
+  <section class="cta-strip">
+    <div class="container">
+      <div class="cta-strip-inner">
+        <div class="cta-strip-text">
+          <h2>Formando condutores responsáveis em Ceilândia há anos. Sua CNH começa aqui!</h2>
+          <p>Dê o próximo passo com uma autoescola séria, experiente e comprometida com a sua aprovação.</p>
+        </div>
+        <div class="cta-strip-actions">
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">
+            Fazer pré-matrícula hoje mesmo!
+          </a>
+          <a class="btn btn-outline"
+             href="https://wa.me/5561983516336?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20Autoescola%20Pioneira"
+             target="_blank" rel="noopener noreferrer">
+            Falar pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- RODAPÉ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-title">Autoescola Pioneira</p>
+        <p>QNN 02 Conjunto G Lote 03 — Ceilândia Sul, Brasília, DF<br>CNPJ: 18.847.852/0001-84</p>
+        <p style="margin-top:.45rem;">
+          WhatsApp: (61) 98351-6336 &nbsp;·&nbsp; Telefone: (61) 3581-1542<br>
+          Seg a Sex: 8h às 18h &nbsp;|&nbsp; Sáb: 9h às 12h
+        </p>
+      </div>
+      <div>
+        <p class="footer-title">Navegação</p>
+        <ul class="footer-nav-list">
+          <li><span data-link="inicio">Início</span></li>
+          <li><span data-link="servicos">Nossos Serviços</span></li>
+          <li><span data-link="planos">Planos e Pacotes</span></li>
+          <li><span data-link="sobre">Sobre</span></li>
+          <li><span data-link="contato">Contato</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Redes e Legal</p>
+        <ul class="footer-nav-list">
+          <li>
+            <a href="https://instagram.com/cfcpioneira6" target="_blank" rel="noopener noreferrer">
+              Instagram: @cfcpioneira6
+            </a>
+          </li>
+          <li><span id="linkPrivacyFooter">Política de Privacidade</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 <strong>Autoescola Pioneira</strong>. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- POLÍTICA DE PRIVACIDADE (overlay) -->
+<div id="privacy-overlay" aria-hidden="true">
+  <header class="privacy-header">
+    <div class="header-inner">
+      <div class="brand" id="brandPrivacy">
+        <div class="brand-logo-wrap">
+          <img src="logo.png" alt="Autoescola Pioneira" />
+        </div>
+        <div>
+          <div class="brand-name">Autoescola Pioneira</div>
+          <div class="brand-city">Ceilândia · Brasília — DF</div>
+        </div>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a data-link="inicio">Início</a></li>
+          <li><a data-link="servicos">Nossos Serviços</a></li>
+          <li><a data-link="planos">Planos e Pacotes</a></li>
+          <li><a data-link="sobre">Sobre</a></li>
+          <li><a data-link="contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="privacy-content">
+    <button type="button" class="back-btn" id="closePrivacyTop">
+      ← Voltar ao site
+    </button>
+
+    <h1>Política de Privacidade</h1>
+    <p class="privacy-sub">
+      Última atualização: maio de 2026 — Autoescola Pioneira (CNPJ 18.847.852/0001-84),
+      QNN 02 Conjunto G Lote 03, Ceilândia Sul, Brasília – DF.
+    </p>
+
+    <h2>1. Dados que coletamos</h2>
+    <p>Podemos coletar os seguintes dados pessoais:</p>
+    <ul>
+      <li>Nome completo;</li>
+      <li>Endereço de e-mail;</li>
+      <li>Número de telefone / WhatsApp;</li>
+      <li>Informações sobre o serviço de interesse;</li>
+      <li>Dados técnicos de navegação.</li>
+    </ul>
+
+    <h2>2. Finalidade do uso dos dados</h2>
+    <p>Utilizamos seus dados para:</p>
+    <ul>
+      <li>Responder a solicitações de contato e pré-matrícula;</li>
+      <li>Agendar e confirmar aulas;</li>
+      <li>Enviar comunicações relacionadas aos serviços contratados;</li>
+      <li>Melhorar a qualidade do atendimento e do site;</li>
+      <li>Cumprir obrigações legais e regulatórias.</li>
+    </ul>
+
+    <h2>3. Compartilhamento de dados</h2>
+    <p>
+      Não vendemos, alugamos ou compartilhamos seus dados pessoais com terceiros
+      para fins comerciais. O eventual compartilhamento ocorrerá apenas quando
+      necessário para cumprir obrigações legais ou regulatórias.
+    </p>
+
+    <h2>4. Armazenamento e segurança</h2>
+    <p>
+      Adotamos medidas técnicas e organizacionais adequadas para proteger seus dados
+      contra acesso não autorizado, perda, uso indevido ou divulgação indevida.
+    </p>
+
+    <h2>5. Seus direitos (LGPD)</h2>
+    <p>De acordo com a LGPD, você pode:</p>
+    <ul>
+      <li>Confirmar a existência de tratamento dos seus dados;</li>
+      <li>Acessar, corrigir ou atualizar suas informações;</li>
+      <li>Solicitar a anonimização, bloqueio ou eliminação de dados desnecessários;</li>
+      <li>Revogar o consentimento a qualquer momento.</li>
+    </ul>
+    <p>
+      Para exercer seus direitos, entre em contato pelo WhatsApp
+      <strong>(61) 98351-6336</strong> ou telefone <strong>(61) 3581-1542</strong>.
+    </p>
+
+    <h2>6. Cookies</h2>
+    <p>
+      Este site pode utilizar cookies para melhorar a experiência de navegação, analisar
+      o uso das páginas e personalizar conteúdos.
+    </p>
+
+    <h2>7. Alterações nesta política</h2>
+    <p>
+      Esta Política de Privacidade pode ser atualizada periodicamente. A data da última
+      atualização estará sempre indicada no início deste documento.
+    </p>
+
+    <h2>8. Contato</h2>
+    <p>Em caso de dúvidas, você pode entrar em contato pelos canais abaixo:</p>
+    <ul>
+      <li>WhatsApp: (61) 98351-6336</li>
+      <li>Telefone fixo: (61) 3581-1542</li>
+      <li>Endereço: QNN 02 Conjunto G Lote 03 — Ceilândia Sul, Brasília, DF</li>
+    </ul>
+
+    <button type="button" class="back-btn" id="closePrivacyBottom">
+      ← Voltar ao site
+    </button>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  // Navegação: atalhos por data-link
+  // ============================================================
+  function scrollToSection(target) {
+    if (target === 'inicio') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    var el = document.getElementById(target);
+    if (!el) return;
+    var header = document.getElementById('main-header');
+    var offset = header ? header.offsetHeight + 8 : 80;
+    var top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+
+  // ============================================================
+  // Menu mobile
+  // ============================================================
+  (function () {
+    var hamburger = document.getElementById('hamburger');
+    var navLinks = document.getElementById('navLinks');
+
+    if (!hamburger || !navLinks) return;
+
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!navLinks.classList.contains('open')) return;
+      if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+
+  // ============================================================
+  // Delegação de cliques: header + footer + overlay
+  // ============================================================
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('[data-link]');
+    if (!link) return;
+
+    e.preventDefault();
+    var target = link.getAttribute('data-link');
+
+    // Fecha menu mobile se estiver aberto
+    var navLinks = document.getElementById('navLinks');
+    var hamburger = document.getElementById('hamburger');
+    if (navLinks && hamburger && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+
+    scrollToSection(target);
+  });
+
+  // Logo volta ao topo
+  document.getElementById('brandLogo')?.addEventListener('click', function () {
+    scrollToSection('inicio');
+  });
+
+  document.getElementById('brandPrivacy')?.addEventListener('click', function () {
+    closePrivacy();
+    scrollToSection('inicio');
+  });
+
+  // ============================================================
+  // Slider de depoimentos
+  // ============================================================
+  (function () {
+    var slides = document.querySelectorAll('.slide');
+    if (!slides.length) return;
+
+    var dotsContainer = document.getElementById('sliderDots');
+    var prevBtn = document.getElementById('sliderPrev');
+    var nextBtn = document.getElementById('sliderNext');
+    var current = 0;
+    var autoTimer;
+
+    // cria dots
+    slides.forEach(function (_, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Depoimento ' + (i + 1));
+      dot.addEventListener('click', function () {
+        goTo(i);
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dotsContainer.children[current].classList.remove('active');
+
+      current = (index + slides.length) % slides.length;
+
+      slides[current].classList.add('active');
+      dotsContainer.children[current].classList.add('active');
+
+      resetAuto();
+    }
+
+    function resetAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(function () {
+        goTo(current + 1);
+      }, 8000);
+    }
+
+    prevBtn.addEventListener('click', function () {
+      goTo(current - 1);
+    });
+
+    nextBtn.addEventListener('click', function () {
+      goTo(current + 1);
+    });
+
+    // swipe em mobile
+    var slider = document.getElementById('slider');
+    var startX = 0;
+    slider.addEventListener('touchstart', function (e) {
+      startX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    slider.addEventListener('touchend', function (e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        goTo(diff > 0 ? current + 1 : current - 1);
+      }
+    }, { passive: true });
+
+    resetAuto();
+  })();
+
+  // ============================================================
+  // Política de Privacidade overlay
+  // ============================================================
+  var privacyOverlay = document.getElementById('privacy-overlay');
+  var linkPrivacyFooter = document.getElementById('linkPrivacyFooter');
+  var closePrivacyTop = document.getElementById('closePrivacyTop');
+  var closePrivacyBottom = document.getElementById('closePrivacyBottom');
+
+  function openPrivacy() {
+    if (!privacyOverlay) return;
+    privacyOverlay.classList.add('open');
+    privacyOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePrivacy() {
+    if (!privacyOverlay) return;
+    privacyOverlay.classList.remove('open');
+    privacyOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  linkPrivacyFooter?.addEventListener('click', function (e) {
+    e.preventDefault();
+    openPrivacy();
+  });
+
+  closePrivacyTop?.addEventListener('click', function () {
+    closePrivacy();
+  });
+
+  closePrivacyBottom?.addEventListener('click', function () {
+    closePrivacy();
+  });
+
+  // fecha overlay com ESC
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && privacyOverlay?.classList.contains('open')) {
+      closePrivacy();
+    }
+  });
+</script>
 </body>
 </html>
