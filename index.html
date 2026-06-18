@@ -70,8 +70,7 @@
     #servicos,
     #planos,
     #sobre,
-    #contato,
-    #lead-form { /* Adicionado #lead-form */
+    #contato {
       scroll-margin-top: calc(var(--header-h) + 8px);
     }
 
@@ -768,6 +767,73 @@
     }
     .footer-bottom strong { color: #e5e7eb; }
 
+/* Estilos para o Modal */
+#form-modal {
+  display: none; /* Escondido por padrão */
+  position: fixed; /* Fica no topo da página */
+  z-index: 200; /* Fica acima de tudo */
+  left: 0;
+  top: 0;
+  width: 100%; /* Largura total */
+  height: 100%; /* Altura total */
+  overflow: auto; /* Habilita scroll se necessário */
+  background-color: rgba(0,0,0,0.7); /* Fundo escuro com transparência */
+  backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+  -webkit-backdrop-filter: blur(5px); /* Para compatibilidade com Safari */
+  padding-top: 20px; /* Espaço do topo */
+}
+
+#form-modal > div {
+  background-color: #fefefe;
+  margin: 5% auto; /* Centraliza o modal vertical e horizontalmente */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%; /* Largura do modal */
+  max-width: 700px; /* Largura máxima */
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* Animação para o modal */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Ajuste para o iframe dentro do modal */
+#form-modal iframe {
+  min-height: 500px; /* Garante uma altura mínima para o iframe */
+}
+
+@media (max-width: 600px) {
+  #form-modal > div {
+    width: 95%;
+    margin: 10% auto;
+  }
+  #form-modal iframe {
+    min-height: 400px;
+  }
+}
+
     /* ============================================================
        POLÍTICA DE PRIVACIDADE (overlay)
     ============================================================ */
@@ -828,76 +894,6 @@
       font-size: .93rem; color: var(--text-muted);
     }
     .privacy-content ul li { margin-bottom: .3rem; }
-
-    /* Estilos para o formulário de lead */
-    .lead-form-section {
-      background: var(--bg-light);
-      padding: 4.5rem 0;
-    }
-    .lead-form-section .sec-head {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    .lead-form-wrapper {
-      max-width: 500px;
-      margin: 0 auto;
-      background: #fff;
-      border: 1px solid rgba(148,163,184,.35);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: 0 12px 32px rgba(15,23,42,.06);
-    }
-    .lead-form-wrapper label {
-      display: block;
-      font-size: .9rem;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: .5rem;
-    }
-    .lead-form-wrapper input[type="text"],
-    .lead-form-wrapper input[type="tel"],
-    .lead-form-wrapper select {
-      width: 100%;
-      padding: .8rem 1rem;
-      border: 1px solid rgba(148,163,184,.5);
-      border-radius: var(--radius-md);
-      font-size: .95rem;
-      color: var(--text-main);
-      margin-bottom: 1.5rem;
-      background-color: #fdfdfd;
-      transition: border-color .15s, box-shadow .15s;
-    }
-    .lead-form-wrapper input[type="text"]:focus,
-    .lead-form-wrapper input[type="tel"]:focus,
-    .lead-form-wrapper select:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(225,27,34,.2);
-    }
-    .lead-form-wrapper .checkbox-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-    .lead-form-wrapper input[type="checkbox"] {
-      margin-right: .7rem;
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      cursor: pointer;
-    }
-    .lead-form-wrapper .checkbox-group label {
-      margin-bottom: 0;
-      font-weight: 400;
-      font-size: .88rem;
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-    .lead-form-wrapper .btn-submit {
-      width: 100%;
-      padding: .8rem 1.4rem;
-      font-size: 1rem;
-    }
   </style>
 </head>
 <body>
@@ -923,7 +919,9 @@
         <li><a data-link="sobre">Sobre</a></li>
         <li><a data-link="contato">Contato</a></li>
         <li class="nav-cta">
-          <a class="btn btn-primary scroll-to-form" href="#lead-form">
+          <a class="btn btn-primary"
+             href="https://wa.me/5561983516336?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20Autoescola%20Pioneira"
+             target="_blank" rel="noopener noreferrer">
             Quero minha CNH
           </a>
         </li>
@@ -969,10 +967,14 @@
           </div>
 
           <div class="hero-actions">
-            <a class="btn btn-primary scroll-to-form" href="#lead-form">
+            <a class="btn btn-primary"
+               href="https://wa.me/5561983516336?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20Autoescola%20Pioneira"
+               target="_blank" rel="noopener noreferrer">
               Quero minha CNH
             </a>
-            <a class="btn btn-outline scroll-to-form" href="#lead-form">
+            <a class="btn btn-outline"
+               href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+               target="_blank" rel="noopener noreferrer">
               Fazer Pré-matrícula agora!
             </a>
           </div>
@@ -997,10 +999,11 @@
                 <span>Fale com um consultor</span>
                 <strong>(61) 98351-6336</strong>
               </div>
-              <a class="btn btn-primary scroll-to-form"
+              <a class="btn btn-primary"
                  style="font-size:.82rem; padding-inline:.95rem;"
-                 href="#lead-form">
-                Pré-matrícula
+                 href="https://wa.me/5561983516336?text=Ol%C3%A1%21%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20Autoescola%20Pioneira"
+                 target="_blank" rel="noopener noreferrer">
+                WhatsApp
               </a>
             </div>
           </div>
@@ -1063,56 +1066,72 @@
           <span class="service-label">Categoria A</span>
           <h3>Primeira Habilitação A</h3>
           <p>Curso completo para quem quer conquistar a CNH categoria A e conduzir motocicletas com segurança.</p>
-          <a class="btn btn-primary scroll-to-form" href="#lead-form">Contratar</a>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
         </article>
 
         <article class="service-card">
           <span class="service-label">Categoria B</span>
           <h3>Primeira Habilitação B</h3>
           <p>Formação completa para quem deseja dirigir automóveis, com teoria, simulador e aulas práticas.</p>
-          <a class="btn btn-primary scroll-to-form" href="#lead-form">Contratar</a>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
         </article>
 
         <article class="service-card">
           <span class="service-label">Categoria AB</span>
           <h3>Primeira Habilitação AB</h3>
           <p>Para quem quer dirigir carro e moto — plano integrado que otimiza seu tempo e investimento.</p>
-          <a class="btn btn-primary scroll-to-form" href="#lead-form">Contratar</a>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
         </article>
 
         <article class="service-card">
           <span class="service-label">Adição</span>
           <h3>Adição de Categoria A</h3>
           <p>Já tem CNH e quer incluir motocicleta? Faça a adição com nossa equipe especializada.</p>
-          <a class="btn btn-primary scroll-to-form" href="#lead-form">Contratar</a>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
         </article>
 
         <article class="service-card">
           <span class="service-label">Adição</span>
           <h3>Adição de Categoria B</h3>
           <p>Amplie suas possibilidades de direção adicionando a categoria B com acompanhamento completo.</p>
-          <a class="btn btn-primary scroll-to-form" href="#lead-form">Contratar</a>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
         </article>
 
         <article class="service-card">
           <span class="service-label">Renovação</span>
           <h3>Renovação de CNH</h3>
           <p>Suporte completo no processo de renovação, com orientação sobre exames, prazos e documentação.</p>
-          <a class="btn btn-primary scroll-to-form" href="#lead-form">Contratar</a>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
         </article>
 
         <article class="service-card">
           <span class="service-label">Treinamento</span>
           <h3>Aulas Avulsas (Carro e Moto)</h3>
           <p>Reforce manobras, estacionamento, baliza e condução em vias movimentadas no seu ritmo.</p>
-          <a class="btn btn-primary scroll-to-form" href="#lead-form">Contratar</a>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Contratar</a>
         </article>
 
         <article class="service-card">
           <span class="service-label">Ver mais</span>
           <h3>Quer conhecer todos os planos?</h3>
           <p>Fale com nossa equipe e descubra qual opção é ideal para você com condições especiais.</p>
-          <a class="btn btn-outline-dark scroll-to-form" href="#lead-form">Ver todos os serviços</a>
+          <a class="btn btn-outline-dark"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">Ver todos os serviços</a>
         </article>
 
       </div>
@@ -1143,7 +1162,9 @@
             </table>
             <p class="plan-notes">* Valores à vista ou PIX. Não inclui taxas do DETRAN e clínica.</p>
             <div class="plan-footer">
-              <a class="btn btn-primary scroll-to-form" href="#lead-form">Contratar</a>
+              <a class="btn btn-primary"
+                 href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+                 target="_blank" rel="noopener noreferrer">Contratar</a>
             </div>
           </div>
         </article>
@@ -1163,7 +1184,9 @@
             </table>
             <p class="plan-notes">* Valores à vista ou PIX. Não inclui taxas do DETRAN e clínica.</p>
             <div class="plan-footer">
-              <a class="btn btn-primary scroll-to-form" href="#lead-form">Contratar</a>
+              <a class="btn btn-primary"
+                 href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+                 target="_blank" rel="noopener noreferrer">Contratar</a>
             </div>
           </div>
         </article>
@@ -1179,11 +1202,13 @@
             <table class="plan-table">
               <tr><td>2 carro + 2 moto</td><td>R$ 699,00</td></tr>
               <tr><td>5 carro + 2 moto</td><td>R$ 959,00</td></tr>
-              <tr><td>10 carro + 2 moto</td><td>R$ 1.260,00</td></tr>
+              <tr><td>10 carro + 5 moto</td><td>R$ 1.260,00</td></tr>
             </table>
             <p class="plan-notes">* Valores à vista ou PIX. Não inclui taxas do DETRAN e clínica.</p>
             <div class="plan-footer">
-              <a class="btn btn-primary scroll-to-form" href="#lead-form">Contratar</a>
+              <a class="btn btn-primary"
+                 href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+                 target="_blank" rel="noopener noreferrer">Contratar</a>
             </div>
           </div>
         </article>
@@ -1226,7 +1251,7 @@
           <article class="slide">
             <p class="slide-text">
               "Minha experiência foi muito boa! Meu instrutor foi essencial nessa caminhada,
-              me ajudou, teve paciência, me deixou mais
+              me ajudou, teve paciência, as aulas são superprodutivas, me deixou mais
               confiante, consegui fazer a prova e alcancei minha aprovação por conta dele
               e da Autoescola Pioneira!"
             </p>
@@ -1310,7 +1335,9 @@
               Matrículas abertas!
             </p>
             <div class="sobre-card-actions">
-              <a class="btn btn-primary scroll-to-form" href="#lead-form">
+              <a class="btn btn-primary"
+                 href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+                 target="_blank" rel="noopener noreferrer">
                 Fazer Pré-matrícula
               </a>
               <a class="btn btn-outline-dark"
@@ -1322,44 +1349,6 @@
           </div>
         </aside>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- FORMULÁRIO DE LEAD -->
-  <section id="lead-form" class="lead-form-section">
-    <div class="container">
-      <div class="sec-head">
-        <p class="sec-kicker">Pré-matrícula</p>
-        <h2 class="sec-title">Solicite seu atendimento</h2>
-        <p class="sec-sub">
-          Preencha o formulário abaixo e nossa equipe entrará em contato para tirar suas dúvidas e iniciar sua matrícula.
-        </p>
-      </div>
-      <div class="lead-form-wrapper">
-        <form id="whatsapp-lead-form">
-          <label for="nome">Nome Completo</label>
-          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
-
-          <label for="whatsapp">WhatsApp</label>
-          <input type="tel" id="whatsapp" name="whatsapp" placeholder="(61) 98351-6336" required>
-
-          <label for="categoria">Categoria Pretendida</label>
-          <select id="categoria" name="categoria" required>
-            <option value="">Selecione uma opção</option>
-            <option value="Categoria A">Categoria A</option>
-            <option value="Categoria B">Categoria B</option>
-            <option value="Categoria AB">Categoria AB</option>
-            <option value="Adição de Categoria">Adição de Categoria</option>
-          </select>
-
-          <div class="checkbox-group">
-            <input type="checkbox" id="autorizacao" name="autorizacao" required>
-            <label for="autorizacao">Autorizo o contato da Autoescola Pioneira pelos canais informados.</label>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-submit">Enviar</button>
-        </form>
       </div>
     </div>
   </section>
@@ -1450,7 +1439,9 @@
           <p>Dê o próximo passo com uma autoescola séria, experiente e comprometida com a sua aprovação.</p>
         </div>
         <div class="cta-strip-actions">
-          <a class="btn btn-primary scroll-to-form" href="#lead-form">
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?usp=header"
+             target="_blank" rel="noopener noreferrer">
             Fazer pré-matrícula hoje mesmo!
           </a>
           <a class="btn btn-outline"
@@ -1485,7 +1476,6 @@
           <li><span data-link="planos">Planos e Pacotes</span></li>
           <li><span data-link="sobre">Sobre</span></li>
           <li><span data-link="contato">Contato</span></li>
-          <li><span data-link="lead-form">Pré-matrícula</span></li>
         </ul>
       </div>
       <div>
@@ -1658,32 +1648,25 @@
   })();
 
   // ============================================================
-  // Delegação de cliques: header + footer + overlay + scroll-to-form
+  // Delegação de cliques: header + footer + overlay
   // ============================================================
   document.addEventListener('click', function (e) {
     var link = e.target.closest('[data-link]');
-    if (link) {
-      e.preventDefault();
-      var target = link.getAttribute('data-link');
+    if (!link) return;
 
-      // Fecha menu mobile se estiver aberto
-      var navLinks = document.getElementById('navLinks');
-      var hamburger = document.getElementById('hamburger');
-      if (navLinks && hamburger && navLinks.classList.contains('open')) {
-        navLinks.classList.remove('open');
-        hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      }
+    e.preventDefault();
+    var target = link.getAttribute('data-link');
 
-      scrollToSection(target);
+    // Fecha menu mobile se estiver aberto
+    var navLinks = document.getElementById('navLinks');
+    var hamburger = document.getElementById('hamburger');
+    if (navLinks && hamburger && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
     }
 
-    // Adicionado para botões com a classe scroll-to-form
-    var scrollToFormBtn = e.target.closest('.scroll-to-form');
-    if (scrollToFormBtn) {
-      e.preventDefault();
-      scrollToSection('lead-form');
-    }
+    scrollToSection(target);
   });
 
   // Logo volta ao topo
@@ -1766,6 +1749,53 @@
   })();
 
   // ============================================================
+  // Modal do Formulário de Pré-matrícula
+  // ============================================================
+  var formModal = document.getElementById('form-modal');
+  var closeButton = document.querySelector('#form-modal .close-button');
+
+  // Função para abrir o modal
+  function openFormModal() {
+    if (formModal) {
+      formModal.style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Impede o scroll do body
+    }
+  }
+
+  // Função para fechar o modal
+  function closeFormModal() {
+    if (formModal) {
+      formModal.style.display = 'none';
+      document.body.style.overflow = ''; // Restaura o scroll do body
+    }
+  }
+
+  // Evento para fechar o modal ao clicar no botão 'x'
+  closeButton?.addEventListener('click', closeFormModal);
+
+  // Evento para fechar o modal ao clicar fora dele
+  window.addEventListener('click', function(event) {
+    if (event.target == formModal) {
+      closeFormModal();
+    }
+  });
+
+  // Evento para fechar o modal com a tecla ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && formModal?.style.display === 'block') {
+      closeFormModal();
+    }
+  });
+
+  // Substitua os links de pré-matrícula existentes para abrir o modal
+  document.querySelectorAll('a[href*="docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // Previne a navegação para o link
+      openFormModal();
+    });
+  });
+
+  // ============================================================
   // Política de Privacidade overlay
   // ============================================================
   var privacyOverlay = document.getElementById('privacy-overlay');
@@ -1806,55 +1836,25 @@
       closePrivacy();
     }
   });
-
-  // ============================================================
-  // Máscara de telefone para WhatsApp e Envio do Formulário
-  // ============================================================
-  document.addEventListener('DOMContentLoaded', function() {
-    var whatsappInput = document.getElementById('whatsapp');
-    var leadForm = document.getElementById('whatsapp-lead-form');
-    const whatsappNumber = '5561983516336'; // Número de WhatsApp da empresa
-
-    if (whatsappInput) {
-      whatsappInput.addEventListener('input', function (e) {
-        var value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-        var formattedValue = '';
-
-        if (value.length > 0) {
-          formattedValue += '(' + value.substring(0, 2);
-        }
-        if (value.length > 2) {
-          formattedValue += ') ' + value.substring(2, 7);
-        }
-        if (value.length > 7) {
-          formattedValue += '-' + value.substring(7, 11);
-        }
-        e.target.value = formattedValue;
-      });
-    }
-
-    if (leadForm) {
-      leadForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Impede o envio padrão do formulário
-
-        const nome = document.getElementById('nome').value;
-        const whatsapp = document.getElementById('whatsapp').value;
-        const categoria = document.getElementById('categoria').value;
-        const autorizacao = document.getElementById('autorizacao').checked;
-
-        if (!autorizacao) {
-          alert('Por favor, autorize o contato da Autoescola Pioneira.');
-          return;
-        }
-
-        const message = `Olá! Meu nome é ${nome}, meu WhatsApp é ${whatsapp} e tenho interesse na categoria ${categoria}. Autorizo o contato da empresa.`;
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-        window.open(whatsappLink, '_blank'); // Abre o link do WhatsApp em uma nova aba
-      });
-    }
-  });
 </script>
+
+<!-- Modal para o Formulário de Pré-matrícula -->
+<div id="form-modal" style="display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7);">
+  <div style="background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 700px; border-radius: 10px; position: relative;">
+    <span class="close-button" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+    <h2 style="margin-bottom: 15px; color: var(--text-main);">Faça sua Pré-matrícula</h2>
+    <p style="margin-bottom: 20px; color: var(--text-muted);">Preencha o formulário abaixo para que nossa equipe entre em contato com informações sobre pacotes, valores e horários.</p>
+    <div style="position: relative; width: 100%; height: 0; padding-bottom: 140%;">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?embedded=true"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0">
+      </iframe>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
