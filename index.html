@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -767,72 +768,74 @@
     }
     .footer-bottom strong { color: #e5e7eb; }
 
-/* Estilos para o Modal */
-#form-modal {
-  display: none; /* Escondido por padrão */
-  position: fixed; /* Fica no topo da página */
-  z-index: 200; /* Fica acima de tudo */
-  left: 0;
-  top: 0;
-  width: 100%; /* Largura total */
-  height: 100%; /* Altura total */
-  overflow: auto; /* Habilita scroll se necessário */
-  background-color: rgba(0,0,0,0.7); /* Fundo escuro com transparência */
-  backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
-  -webkit-backdrop-filter: blur(5px); /* Para compatibilidade com Safari */
-  padding-top: 20px; /* Espaço do topo */
-}
+    /* ============================================================
+       Estilos para o Modal do Formulário
+    ============================================================ */
+    #form-modal {
+      display: none; /* Escondido por padrão */
+      position: fixed; /* Fica no topo da página */
+      z-index: 200; /* Fica acima de tudo */
+      left: 0;
+      top: 0;
+      width: 100%; /* Largura total */
+      height: 100%; /* Altura total */
+      overflow: auto; /* Habilita scroll se necessário */
+      background-color: rgba(0,0,0,0.7); /* Fundo escuro com transparência */
+      backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+      -webkit-backdrop-filter: blur(5px); /* Para compatibilidade com Safari */
+      padding-top: 20px; /* Espaço do topo */
+    }
 
-#form-modal > div {
-  background-color: #fefefe;
-  margin: 5% auto; /* Centraliza o modal vertical e horizontalmente */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 90%; /* Largura do modal */
-  max-width: 700px; /* Largura máxima */
-  border-radius: 10px;
-  position: relative;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-}
+    #form-modal > div {
+      background-color: #fefefe;
+      margin: 5% auto; /* Centraliza o modal vertical e horizontalmente */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 90%; /* Largura do modal */
+      max-width: 700px; /* Largura máxima */
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+      animation-name: animatetop;
+      animation-duration: 0.4s;
+    }
 
-/* Animação para o modal */
-@keyframes animatetop {
-  from {top: -300px; opacity: 0}
-  to {top: 0; opacity: 1}
-}
+    /* Animação para o modal */
+    @keyframes animatetop {
+      from {top: -300px; opacity: 0}
+      to {top: 0; opacity: 1}
+    }
 
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
+    .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
 
-.close-button:hover,
-.close-button:focus {
-  color: var(--primary);
-  text-decoration: none;
-  cursor: pointer;
-}
+    .close-button:hover,
+    .close-button:focus {
+      color: var(--primary);
+      text-decoration: none;
+      cursor: pointer;
+    }
 
-/* Ajuste para o iframe dentro do modal */
-#form-modal iframe {
-  min-height: 500px; /* Garante uma altura mínima para o iframe */
-}
+    /* Ajuste para o iframe dentro do modal */
+    #form-modal iframe {
+      min-height: 500px; /* Garante uma altura mínima para o iframe */
+    }
 
-@media (max-width: 600px) {
-  #form-modal > div {
-    width: 95%;
-    margin: 10% auto;
-  }
-  #form-modal iframe {
-    min-height: 400px;
-  }
-}
+    @media (max-width: 600px) {
+      #form-modal > div {
+        width: 95%;
+        margin: 10% auto;
+      }
+      #form-modal iframe {
+        min-height: 400px;
+      }
+    }
 
     /* ============================================================
        POLÍTICA DE PRIVACIDADE (overlay)
@@ -1496,6 +1499,24 @@
   </div>
 </footer>
 
+<!-- Modal para o Formulário de Pré-matrícula -->
+<div id="form-modal" style="display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7);">
+  <div style="background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 700px; border-radius: 10px; position: relative;">
+    <span class="close-button" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+    <h2 style="margin-bottom: 15px; color: var(--text-main);">Faça sua Pré-matrícula</h2>
+    <p style="margin-bottom: 20px; color: var(--text-muted);">Preencha o formulário abaixo para que nossa equipe entre em contato com informações sobre pacotes, valores e horários.</p>
+    <div style="position: relative; width: 100%; height: 0; padding-bottom: 140%;">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?embedded=true"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0">
+      </iframe>
+    </div>
+  </div>
+</div>
+
 <!-- POLÍTICA DE PRIVACIDADE (overlay) -->
 <div id="privacy-overlay" aria-hidden="true">
   <header class="privacy-header">
@@ -1837,24 +1858,5 @@
     }
   });
 </script>
-
-<!-- Modal para o Formulário de Pré-matrícula -->
-<div id="form-modal" style="display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7);">
-  <div style="background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 700px; border-radius: 10px; position: relative;">
-    <span class="close-button" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
-    <h2 style="margin-bottom: 15px; color: var(--text-main);">Faça sua Pré-matrícula</h2>
-    <p style="margin-bottom: 20px; color: var(--text-muted);">Preencha o formulário abaixo para que nossa equipe entre em contato com informações sobre pacotes, valores e horários.</p>
-    <div style="position: relative; width: 100%; height: 0; padding-bottom: 140%;">
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLScnsLBcbSHpA4DUJv5-uOe0a6SVFvXgPNe6AMmfrkiPUkTwzA/viewform?embedded=true"
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0">
-      </iframe>
-    </div>
-  </div>
-</div>
-
 </body>
 </html>
